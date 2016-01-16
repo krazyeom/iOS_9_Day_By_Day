@@ -1,27 +1,28 @@
 #iOS 9 Day by Day
 #6. iPad Multitasking
 
-One of the biggest changes in iOS 9 was the introduction of multitasking. Multitasking allows users to have more than one app on the screen at a time. This comes in two forms. Slide Over, and Split View. 
+iOS 9에서 큰 변화 중 하나는 Multitasking이다. Multitasking은 사용자가 한 화면에 하나 이상의 앱을 사용할 수 있게 한다. 두 가지 형태로 동작한다. 그 두가지는 Slide Over와 Split View이다.
 
 ##Slide Over View
 
 ![The new iOS Slide Over View](images/slideOver.png)
 
-In slide over view, the user swipes from the right hand side to display a list of their apps, then can select one to open it in a the narrow window displayed. This appears on top of the app that was previously opened and any interaction with the left hand side of the window is disabled.
+화면의 오른쪽 끝에서 왼쪽으로 쓸어넘기기를 하면 앱의 목록을 보여주는 Slide over view가 나타나고 이 좁은 창에 보여질 앱을 선택할 수 있다. 이 좁은 창은 실행중인 앱 위에 나타나며, 창 왼쪽의 입력은 불가능한 상태가 된다.
 
 ##Split View
 
 ![The new iOS Split View](images/split.png)
 
-To open split view, the user pulls the vertical divider that appears in Slide Over View further to the left. The user directly controls the size of your app's window by sliding the vertical divider between the two app windows. When split view is active, there is no concept of a foreground or background app. Both apps are in the foreground.
+Split view를 보려면 Slide Over view에 있는 수직 구분자를 왼쪽으로 더 당겨야 한다. 두 앱 화면 사이에 있는 수직 구분자를 움직여서 앱 화면의 크기를 조정한다. Split View가 활성화 되었을 때, foreground 앱과 background 앱으로 나눠지지 않는다. 두 앱 모두 foreground 앱이다.
 
-It's worth noting that split view is currently only available on the iPad Air 2.
+Split view는 현재 iPad Air 2에서만 가능하다.
 
 ##Enabling Multitasking in Your App
-New Projects created in Xcode 7 have multitasking enabled by default. If you have an existing application however, you'll have to enable it manually. When you are using the iOS 9 SDK, there are a couple of steps to do this.
 
-1. Enable all user interface orientations in your app
-2. Use Launch Storyboards
+Xcode 7에서 생성된 새로운 프로젝트는 기본으로 Multitasking을 사용할 수 있다. 그러나 기존 응용프로그램을 가지고 있다면, 직접 활성화해야 한다. iOS 9 SDK를 사용하는 경우 이를 활성화하는 몇 단계 과정이 있다.
+
+1. 앱의 모든 사용자 인터페이스의 모든 화면 방향을 활성화 시킨다.
+2. Launch Storyboard를 사용한다.
 
 ###Opting Out
 If your app already does the above things, then multitasking will be enabled when it is built with the iOS 9 SDK. If you want to opt out of this behaviour, specify the `UIRequiredFullscreen` key in your `info.plist ` file. 
