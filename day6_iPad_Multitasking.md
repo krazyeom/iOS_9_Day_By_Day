@@ -25,12 +25,12 @@ Xcode 7에서 생성된 새로운 프로젝트는 기본으로 Multitasking을 �
 2. Launch Storyboard를 사용한다.
 
 ###Opting Out
-If your app already does the above things, then multitasking will be enabled when it is built with the iOS 9 SDK. If you want to opt out of this behaviour, specify the `UIRequiredFullscreen` key in your `info.plist ` file. 
+이미 위의 것들을 했다면, iOS 9 SDK로 앱을 빌드할 때 multitasking은 활성화 될 것이다. 이 기능을 빼고 싶다면, `info.plist` 파일의 `UIRequiredFullscreen` 키를 지정하라.
 
 ###The Importance of Auto Layout
-Auto Layout was first introduced in iOS 6, and gives you a way to lay out your UI by specifying constraints rather than fixed positions. Adaptive Layout was introduced in iOS8, which takes Auto Layout to the next level by allowing you to specify different constraints based on different size classes. Size classes identify a relative amount of display space for the height and for the width of your app's window.
+Auto Layout은 iOS 6에서 처음으로 소개되었다. 그리고 고정된 위치가 아닌 제약을 지정하는 것으로 UI를 배열하는 방법을 제공한다. Auto Layout의 다음 단계로 여러 크기 클래스에 기반하여 다른 제약을 지정하는 Adaptive Layout은 iOS 8에서 소개되었다. 크기 클래스는 앱 창의 높이와 넓이에 대해서 상대적인 표시 공간의 크기를 나타낸다. 
 
-Due to the nature of multitasking, there are a few issues that you'll have to take into consideration when compiling your app with the iOS 9 SDK.
+Multitasking의 특성으로 인하여 iOS 9 SDK에서 앱을 컴파일할 때, 고려해야할 몇 가지 문제가 있다. 
 
 ###Don't Use UIInterfaceOrientation any more!
 Conceptually, this doesn't work any more if your app supports multitasking. If you have a multitasking app and you are checking the current UIInterfaceOrientation, you can't be sure that your app is running in full screen. If your app is the front app in SplitView and the iPad is landscape, then even though it is larger vertically than horizontally, it will still return UIInterfaceOrientationPortrait.
