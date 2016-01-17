@@ -33,9 +33,9 @@ Auto Layout은 iOS 6에서 처음으로 소개되었다. 그리고 고정된 위
 Multitasking의 특성으로 인하여 iOS 9 SDK에서 앱을 컴파일할 때, 고려해야할 몇 가지 문제가 있다. 
 
 ###Don't Use UIInterfaceOrientation any more!
-Conceptually, this doesn't work any more if your app supports multitasking. If you have a multitasking app and you are checking the current UIInterfaceOrientation, you can't be sure that your app is running in full screen. If your app is the front app in SplitView and the iPad is landscape, then even though it is larger vertically than horizontally, it will still return UIInterfaceOrientationPortrait.
+앱이 Multitasking을 지원한다면 개념적으로 UIInterfaceOrientation은 더 이상 동작하지 않는다. Mutitasking 앱을 가지고 있고 현재 UIInterfaceOrientation을 확인한다면, 앱이 전체 화면에서 동작하고 있는지 확신할 수 없다. Split View에서 앱이 실행중이고 iPad가 가로모드라면, 수평보다 수직이 더 큰 경우지만 UIInterfaceOrientationPortrait을 반환할 것이다.
 
-Sometimes you will still need to modify your interface based on size of the app's window though. So how can we do that? The answer is to use `traitCollection.horizontalSizeClass`. This gives you the Size Class information about your interface, which you can use to conditionally position views in your app.
+때때로 앱의 창 크기에 기반해서 여전히 인터페이스를 수정할 필요가 있을것이다. 그래서 어떻게 할 수 있을까? `traitCollection.horizontalSizeClass`을 사용하는 것이 답이다. 앱에서 선택적으로 뷰를 배치할 수 있게 인터페이스에 대한 크기 클래스 정보를 준다. 
 
 ###Size Change Transition Events
 
