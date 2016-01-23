@@ -39,15 +39,15 @@ Multitasking의 특성으로 인하여 iOS 9 SDK에서 앱을 컴파일할 때, 
 
 ###Size Change Transition Events
 
-Previously, events such as `willRotateToInterfaceOrientation` and `didRotateToInterfaceOrientation` were the recommended way to make changes to your application when the screen rotated. In iOS 8, Apple introduced `willTransitionToTraitCollection` and `viewWillTransitionToSize`. These methods become even more important in iOS 9 with the introduction of multitasking. To check whether your interface is portrait or landscape, which you still may wish to do, you can manually compare the width to the height.
+예전에는 `willRotateToInterfaceOrientation`과 `didRotateToInterfaceOrientation` 같은 이벤트들이 화면이 회전할 때 앱의 변화를 주는 추천하는 방법이었다. 애플은 iOS 8에서 `willTransitionToTraitCollection`과 `viewWillTransitionToSize`을 소개했다. Multitasking의 도입으로 이 방법들은 iOS 9에서 더욱 중요해졌다. 인터페이스가 가로 또는 세로인지 확인하기를 원한다면, 직접 넓이와 높이를 비교할 수 있다.
 
 ###Responding to Keyboard Events
 
-In the past, the only time your app would be effected by the keyboard was when it was opened by your app itself. Now, it's possible to have a keyboard appear on top of your app, even though a user did not open it from your app.
+과거에는 앱이 키보드에 영향을 받는 시점은 앱에서 키보드를 띄울때 뿐이였다. 사용자가 앱에서 키보드를 띄우지 않더라도, 지금은 앱 위에 키보드가 나타날 수 있다.
 
 ![The keyboard covering two apps in iOS 9](images/keyboard.png)
 
-In some cases, you may be fine with the keyboard appearing on top of your app. However, if it obstructs an important piece of your UI then your users may be obstructed. In this situation, you should respond to one of the `UIKeyboard` notifications that have been around for a long time now. `WillShow`, `DidShow`, `WillHide`, `DidHide`, `WillChangeFrame` and `DidChangeFrame` notifications should give you the ability to do this. These events will fire in **both** apps that are present on screen.
+몇몇 경우에 앱위에 키보드가 나타나는 것은 괜찮을 수 있다. 그러나 키보드가 앱 UI의 중요한 부분을 가린다면 그때 사용자는 방해를 받을 수 있다. 이 상황에서 오래동안 머무르는 `UIKeyboard` 알림중에 하나에 응답해야 한다. `WillShow`, `DidShow`, `WillHide`, `DidHide`, `WillChangeFrame`, `DidChangeFrame` 알림이 이 작업을 가능하게 한다. 이 이벤트들은 화면에 있는 **두** 앱들에 전달된다.
 
 ###Other Considerations
 
