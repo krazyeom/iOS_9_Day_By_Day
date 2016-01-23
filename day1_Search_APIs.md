@@ -6,7 +6,7 @@ iOS 9 이전에는 앱의 이름으로 찾는 것으로만 spotlight를 사용 �
 
 ### NSUserAcitity
 
-The NSUserActivity API was introduced in iOS 8 for Handoff, but iOS 9 allows activities to be searchable. You can now provide metadata to these activities, meaning that spotlight can index them. This acts as a history stack, similar to when you are browsing the web. The user can quickly open their recent activities from Spotlight.
+NSUserActivity API는 Handoff를 위해 iOS 8에서 소개되었지만 iOS 9에서 Activity의 검색이 가능하게 되었다. 당신은 이제 이런 activity에 metadata를 줄 수 있고 그것은 spotlight가 activity를 index 할 수 있다는 걸 의미한다. 이 것은 웹에서 browsing 할 때의 history stack과 유사한 역할을 한다. 사용자는 spotlight를 통해 더 빠르게 그의 최근 activity을 열 수 있다.
 
 ### Web Markup
 
