@@ -95,7 +95,7 @@ Promise 가 resolved 되면 sign-in 또는 sign-out 버튼이 DOM에 추가될 �
 
 #### Fetching Records
 
-fetch records 함수는 'CloudNote'타입으로된 모든 레코드를 query 한다. (해석체크 ???)
+fetch records 함수는 'CloudNote'타입으로된 모든 레코드를 query 한다.
 
 	self.fetchRecords = function() {
 		var query = { recordType: 'CloudNote' };
@@ -117,7 +117,7 @@ fetch records 함수는 'CloudNote'타입으로된 모든 레코드를 query 한
 		});
 	};
 
-위에서 여러분은 어떻게 recordType에 기초한 basic query 가 셋업되는지 , 또 public database 위에서 실행하는 것을 볼 수 있다. public database 에서는 Query 가 실행될 필요는 없다, 또한 private database 에서는 실행될 수 있다. 다만 현재 app 에서 모든 작업은 public 이다.
+위에서 여러분은 어떻게 recordType에 기초한 basic query 가 셋업되는지 , 또 public database 위에서 실행하는 것을 볼 수 있다. public database 에서는 Query 가 실행될 필요는 없다, 하지만 private database 에서는 실행될 수 있다. 다만 현재 app 에서 모든 작업은 public 이다.
 
 노트가 fetch 된 이후, self.notes 로 저장한다(이는 knockout observable 임). 무슨 말이냐면 note template을 이용해 HTML 이 만들어진다는 의미이며 , 또 fetch된 노트가 페이지에 나타난다는 뜻이다.
 
@@ -193,11 +193,11 @@ Configuration panel 은 이제 아래처럼 보일 것이다.
 
 ## 결론
 
-자 여기까지 CloudKit JS API가 얼마나 사용하기 심플한지 잘 보셨으리라 생각한다. 저자는 애플이 web기반의 CloudKit 을 제공해서 기쁘다, 하지만 개인적으로 아직 내가 app 개발시 사용하기에는 개선의 여지가 있다고 본다.
+자 여기까지 CloudKit JS API가 사용하기에 얼마나 심플한지 잘 보셨으리라 생각한다. 저자는 애플이 web기반의 CloudKit 을 제공해서 기쁘다, 하지만 개인적으로 아직 app 개발시 사용하기에는 개선의 여지가 있다고 본다.
 
-이미 시장에는 넘쳐나는 서드파티 cloud 서비스들이 더 많은 기능과 세련된 문서화로 출시되고 있고, 타 플랫폼을 위한 네이티브 SDK들도 제공된다. 수차례 시도해보았지만 시뮬레이터에서 작동하는 CloudKit 서비스는 아직까지 보지 못 했다. 이른 시간 내에 이 사항이 개선되지 않는다면 개발시 또 다른 장벽이 될 것으로 보인다.
+이미 시장에는 넘쳐나는 서드파티 cloud 서비스들이 더 많은 기능과 세련된 문서화로 출시되고 있고, 타 플랫폼을 위한 네이티브 SDK들도 제공된다. 수차례 시도해보았지만 시뮬레이터에서 작동하는 CloudKit 서비스는 아직까지 보지 못 했다. 이른 시간 내에 이 사항이 개선되지 않는다면 이는 개발시 또 다른 장벽이 될 것으로 보인다.
 
-확실히 CloudKit 를 사용할 경우가 발생할 것이기 때문에 모두들 한번씩 시도해 볼 것을 권한다. 장래에 또 다른 플랫폼에서 데이터를 access할 필요가 발생할 것이라면 고려해 보시기 바란다.
+확실히 CloudKit 를 사용할 경우가 발생할 것이기 때문에 모두들 한번씩 코딩해 볼 것을 권한다. 다만 이른 장래에 타 플랫폼에서 데이터를 access할 필요가 발생할 것이라면 별도 고려해 보시기 바란다.
 
 ## 추가적인 읽을 거리
 앞서 나온 CloudKit JS 와 Web Services 에 관한 자세한 정보는 WWDC session 710 를 보기바란다 , [CloudKit JS and Web Services](https://developer.apple.com/videos/wwdc/2015/?id=608). 우리가 여기서 만들어본 프로젝트는 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/13-CloudKit-Web-Services)에서 볼 수 있음을 잊지말자.
