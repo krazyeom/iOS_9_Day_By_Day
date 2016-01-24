@@ -4,7 +4,7 @@
 
 ## UI Testing
 
-애플은 Xcode 7에서 앱의 사용자 인터페이스 테스트를 수행할 수 있는 새로운 방법을 소개했습니다. UI 테스트는 당신이 UI 요소를 찾고 그것들과 상호작용 할 수 있으며, 사용가능한 속성과 상태를 검증할 수 있습니다. UI 테스트는 완벽하게 Xcode 7 테스트 리포트와 통합되었으며, 단위 테스트와 함께 실행 됩니다. XCTest는 Xcode 5 이후 Xcode의 테스트 프레임워크로 통합 되었지만, Xcode 7에서는 새로운 UI 테스트 기능이 포함되어 업데이트 되었습니다. 이것은 당신이 특정 지점에서 당신의 UI 상태를 확인할 수 있도록 문장(assertions)을 만들수 있습니다. 
+애플은 Xcode 7에서 앱의 사용자 인터페이스 테스트를 수행할 수 있는 새로운 방법을 소개했습니다. UI 테스트는 당신이 UI 요소를 찾고 그것들과 상호작용 할 수 있으며, 사용가능한 속성과 상태를 검증할 수 있습니다. UI 테스트는 완벽하게 Xcode 7 테스트 리포트와 통합되었으며, 단위 테스트와 함께 실행 됩니다. XCTest는 Xcode 5 이후 Xcode의 테스트 프레임워크로 통합 되었지만, Xcode 7에서는 새로운 UI 테스트 기능이 포함되어 업데이트 되었습니다. 이것은 당신이 특정 지점에서 당신의 UI 상태를 확인할 수 있도록 주장(assertions)을 만들수 있습니다. 
 assertions - (In computer programming, an assertion is a statement that a predicate (Boolean-valued function, a true–false expression) is expected to always be true at that point in the code. If an assertion evaluates to false at run time, an assertion failure results, which typically causes the program to crash, or to throw an assertion exception.)
 
 ### Accessibility
@@ -36,7 +36,79 @@ UI 테스트는 다른 크기의 장치 문제에 대한 뛰어난 해결책을 
 UI를 설정하고 동작하게 되면, 우리는 코드의 어떤 변경도 기능적으로 영향을 주지 않는 몇가지 UI 테스트를 작성할 수 있습니다. 
 
 #### THE XCTEST UI TESTING API
+우리가 녹화를 시작하기 전에 우리는 우리가 주장하고 싶은 것을 결정해야 합니다. 우리가 우리의 UI에 대해 확실한 무언가를 주장하기 위해서는 3가지 새로운 부분을 포함 하도록 확장된 XCTest 프레임워크를 사용할 수 있습니다. 
 
+**XCUIApplication.** 이것은 당신이 테스트 중인 응용 프로그램을 위한 대리(Proxy) 입니다. 이것은 당신이 응용 프로그램을 실행하여 그것에 테스트를 할 수 있도록 허용해 줍니다.  그것이 항상 새로운 프로세스를 시작하는 것에 주목할 가치가 있다. 이것은 시간이 조금 더 필요하지만, 그것은 당신의 응용 프로그램이 테스트를 하기 위해 실행 될때 깨끗하다는 것을 의미하며, 당신이 고려해야할 변수가 적다는 것을 의미하기도 한다. 
 
+** XCUIElement.** 이것은 당신이 테스트 중인 응용 프로그램의 UI 요소를 위한 대리(Proxy) 입니다. 요소들은 유형들(types)과 식별자들(identifiers)을 가지고 있으며, 당신이 응용 프로그램에서 요소들을 찾을수 있도록 결합 할수도 있습니다. 이 요소들은 당신의 응용 프로그램을 표현하는 구조(tree) 모두 자리잡고 있습니다. 
 
- 
+** XCUIElementQuery.** 당신이 요소들을 찾기를 원할때 당신은 요소 쿼리를 사용 합니다. 모든 XCUIElement 은 쿼리에 의해서 뒷받침 되어 집니다. 이러한 쿼리는 XCUIElement 구조를 검사하고 반드시 일치하는 하나를 결정해야 합니다. 그렇지 않으면 당신의 테스트는 요소에 접근을 하려고 할때 실패할 것입니다. 이 예외는 이것이 속성에 존재하는지 당신이 체크 하려고 할 때 확인할 수 있습니다. 이것은 주장(assertions)에 유용합니다. 당신은 명백하게 접근할 수 있는 요소들을 찾기를 원할때  XCUIElementQuery를 보다 일반적으로 사용할 수 있습니다. 쿼리는 결과의 집합을 반환 합니다.
+
+이제 우리는 API를 탐험 할 수 있는 방법을 알게 되었고 몇가지 테스트 작성을 시작할 수 있습니다. 
+
+** TEST 1 - ENSURING NO NAVIGATION TAKES PLACE WHEN THE SWITCH IS OFF ** 
+먼저 우리는 테스트를 포함하는 함수를 정의해야 합니다. 
+
+	func testTapViewDetailWhenSwitchIsOffDoesNothing() {
+	}
+
+함수를 정의 했다면, 우리는 마우스 커서를 괄호 안으로 이동하고 Xcode 창의 맨 아래에 있는 녹화버튼을 누릅니다.
+
+\<그림\>
+
+이제 응용 프로그램이 실행 될것입니다. 메인 뷰 컨트롤러의 스위치를 “off”로 바꾸고 “View Detail”버튼을 누릅니다. 아래가 내부에 보여야 합니다.
+
+	testTapViewDetailWhenSwitchIsOffDoesNothing.
+	
+	   let app = XCUIApplication()
+	   app.switches["View Detail Enabled Switch"].tap()
+	   app.buttons["View Detail”].tap()
+
+이제 녹화 버튼을 다시 클릭해서 녹화를 중지해야 합니다. 우리는 실제로 응용 프로그램이 상세 뷰 컨트롤러를 표시하지 않은 것을 볼 수 있지만, 테스트는 현재 상태를 알 수 있는 방법이 없다. 우리는 아무것도 변경되지 않은 것을 주장(assert) 해야 합니다. 우리는 네비게이션 바의 타이틀을 검사 함으로써 이것을 알 수 있습니다. 이것이 모든 사례에 적합하지는 않겠지만, 지금은 잘 동작 합니다. 
+
+	XCTAssertEqual(app.navigationBars.element.identifier, “Menu")
+
+일단 이 라인을 추가하고 다시 테스트를 실행해도 여전히 테스트를 통과해야 한다. 예를 들어 “Menu” 문자열을 “Detail” 로 변경하고 시도하면 테스트는 실패할 것이다. 여기에 동작에 대한 설명을 추가한 몇가지 코멘트와 최종 테스트의 결과 있다. 
+
+	func testTapViewDetailWhenSwitchIsOffDoesNothing() {
+	       let app = XCUIApplication()
+	       // Change the switch to off.
+	       app.switches["View Detail Enabled Switch"].tap()
+	       // Tap the view detail button.
+	       app.buttons["View Detail"].tap()
+	       // Verify that nothing has happened and we are still at the menu
+	   screen.
+	       XCTAssertEqual(app.navigationBars.element.identifier, "Menu")
+	   }
+
+** TEST 2 - ENSURING NAVIGATION TAKES PLACE WHEN THE SWITCH IS ON ** 
+두번째 테스트는 첫번째 테스트와 비슷하기 때문에 상세히 이야기 하지는 않습니다. 여기에서 유일한 차이점은 스위치가 활성화 되어 있는 것이며, 그래서 응용 프로그램은 상세 화면을 로드 할 수 있어야 하며, 그리고 XCTAssertEqual는 이를 확인 할 수 있어야 합니다. 
+
+	func testTapViewDetailWhenSwitchIsOnNavigatesToDetailViewController()
+	   {
+	       let app = XCUIApplication()
+	       // Tap the view detail button.
+	       app.buttons["View Detail"].tap()
+	       // Verify that navigation occurred and we are at the detail
+	   screen.
+	       XCTAssertEqual(app.navigationBars.element.identifier, "Detail")
+	   }
+
+** TEST 3 - ENSURING THE INCREMENT BUTTON INCREMENTS THE VALUE LABEL. ** 
+이번 테스트는 사용자가 증가 버튼을 클릭 했을때 라벨의 값이 1씩 증가 하는지 확인하는 것입니다. 이번 테스트의 처음 두줄은 이전 테스트와 아주 비슷하기 때문에 이전 테스트에서 복사해서 붙여 넣을수 있습니다. 
+
+	   let app = XCUIApplication()
+	   // Tap the view detail button to open the detail page.
+	   app.buttons["View Detail”].tap()
+
+다음으로 우리는 버튼에 접근해야할 필요가 있습니다. 우리가 변수로서 이것을 저장할수 있도록 몇번 이 버튼을 누릅니다. 수동으로 이 버튼을 찾기 위해서 코드를 수동으로 입력하고 디버깅 하는것 보다, 녹화를 시작하고 버튼을 클릭 합니다. 이렇게 하면 다음과 같은 코드가 제공 됩니다. 
+
+	   app.buttons["Increment Value”].tap()
+
+우리는 녹화를 중단하고 이렇게 변경 합니다. 
+
+	   let incrementButton = app.buttons["Increment Value”]
+
+이 방법은 우리가 버튼을 찾기 위해서 수동으로 코드를 입력할 필요가 없습니다. 우리는 이것과 같은 방법으로 값 레이블을 찾을수 있습니다. 
+
+	   let valueLabel = app.staticTexts["Number Value Label”]
