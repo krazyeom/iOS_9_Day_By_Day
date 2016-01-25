@@ -24,7 +24,7 @@ UI 테스트는 다른 크기의 장치 문제에 대한 뛰어난 해결책을 
 ### Setup
 당신이 새로운 프로젝트를 Xcode7에서 생성한다면 당신은 UI 테스트를 포함 시킬지 여부를 선택할 수 있습니다. 이것은 UI 테스트를 위해 당신이 필요로 하는 모든 구성을 설정해 줍니다.
 
-\< 그림 \>
+![][image-1]
 
 이번 예제의 프로젝트 셋업은 정말로 간단하지만, Xcode7 에서 UI 테스트가 어떻게 동작하는지를 설명하는데는 충분합니다. 
 
@@ -32,7 +32,7 @@ UI 테스트는 다른 크기의 장치 문제에 대한 뛰어난 해결책을 
 
 스위치와 상세 뷰 컨트롤러를 연결하는 버튼을 포함하는 메뉴 뷰 컨트롤러가 있습니다. 스위치가 “off” 상태였을때, 버튼은 비활성화 되어야 하며 네비게이션 기능은 불가능 해야 합니다. 상세 뷰 컨트롤러는 라벨의 값을 증가하는 간단한 버튼을 포함하고 있습니다. 
 
-### Using UI Recording 
+### Using UI Recording
 UI를 설정하고 동작하게 되면, 우리는 코드의 어떤 변경도 기능적으로 영향을 주지 않는 몇가지 UI 테스트를 작성할 수 있습니다. 
 
 #### THE XCTEST UI TESTING API
@@ -151,3 +151,5 @@ Xcode의 UI 테스트의 가장 새로운 기능 중에 하나는 지속적인 �
 
 ## Further Reading
 Xcode의 새로운 UI 테스트 기능에 대한 보다 많은 정보는 WWDC session 406, UI Testing in Xcode을 보기를 권합니다. 당시은 아마 Testing in Xcode Documentation과 Accessibility for Developers Documentation에 대해서도 흥미를 느낄 것입니다. 
+
+[image-1]:	./images/Day2-1.png
