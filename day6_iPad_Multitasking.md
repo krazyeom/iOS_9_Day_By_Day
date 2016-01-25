@@ -51,11 +51,11 @@ Multitasking의 특성으로 인하여 iOS 9 SDK에서 앱을 컴파일할 때, 
 
 ###Other Considerations
 
-The changes you will have to make aren't just visual. Previously, apps could rely on being the only app running in the foreground. You had sole access to the vast majority of system resources such as the CPU, GPU and memory. However, this has now changed. If a user has split view or slide over view active, and, at the same time, is watching a video in the new iOS 9 [picture in picture mode](https://developer.apple.com/library/prerelease/ios/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForPictureInPicture.html), then these resources must be shared between three applications.
+만들어야 할 변화들은 눈에 보이지않다. 예전에는 앱들은 앞(foreground)에서 수행되는 하나의 앱이 되는 것에 의존했었다. CPU, GPU, 메모리 같은 다양한 시스템 자원들의 대부분을 독점했었다. 그러나, 이제는 바뀌었다. 사용자가 split view 또는 slider over view 그리고 동시에 새로운 iOS 9의 [picture in picture mode](https://developer.apple.com/library/prerelease/ios/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForPictureInPicture.html)로 동영상을 보고 있다면, 3개의 앱들은 다양한 시스템 자원들을 공유해야만 한다.
 
-> *For best user experience, the system tightly manages resource usage and terminates apps that are using more than their fair share* - Apple iOS 9 Multitasking Documentation
+> *최고의 사용자 경험을 위해서 시스템은 자원 사용을 엄격하게 관리하고 정당한 몫 이상 자원을 사용하는 앱을 종료시킨다.* - Apple iOS 9 Multitasking 문서
 
-You should therefore profile and heavily test your applications on different variations of iPad so that you are confident that your application is as efficient as it can be and is not using resources that it does not need.
+따라서 앱이 가능한 불필요한 자원을 사용하지 않을 만큼 효율적이라는 것을 확신하기 위해서 iPad의 다양한 상태에서 앱을 분석하고 많이 테스트 해야한다.
 
 ##Further Reading
 iOS 9의 새로운 multitasking 기능에 대한 더 많은 정보를 원한다면, iOS 개발자 라이브러리의 가이드에서 [Adopting Multitasking On iPad](https://developer.apple.com/library/prerelease/ios/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/index.html) 살펴 보라. WWDC 205 세션 [Continuous Integration and Code Coverage in Xcode](https://developer.apple.com/videos/wwdc/2015/?id=410)을 보는 것을 추천한다. 이 글에서 우리가 만들고 설명했던 프로젝트를 시도하려고 한다면, [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/05-CodeCoverage) 에서  찾을 수 있다는 것을 잊지 마시라.
