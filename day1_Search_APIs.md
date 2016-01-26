@@ -17,7 +17,7 @@ The fact that results can appear even when your app is **not** installed on a us
 
 ### CoreSpotlight
 
-CoreSpotlight is a new iOS 9 framework which allows you to index any content inside of your app. While NSUserActivity is useful for saving the user's history, with this API, you can index any data you like. It essentially provides you with low level access to the CoreSpotlight index on the user's device.
+CoreSpotlight는 당신의 App 안의 어떤 컨텐츠든 index 할 수 있도록 해주는 새로운 iOS 9의 framework이다. NSUserActivity가 사용자의 history를 저장하는데는 유용하지만 이 API와 함께 당신이 원하는 어떤 data도 index할 수 있다.  이 것은 근본적으로 사용자의 Device의 CoreSpotlight를 통해 low level의 접근을 제공한다.
 
 
 ## Using the Core Spotlight APIs
