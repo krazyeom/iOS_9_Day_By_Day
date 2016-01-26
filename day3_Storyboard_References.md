@@ -4,26 +4,37 @@
 
   이를 해결하기 위해, 애플은 iOS9에서 스토리 참조 개념(Storyboard References)을 소개했다. 스토리보드 참조는 세그웨이를 통해 다른 스토리보드에 있는 뷰 컨트롤러들을 참조 할 수 있게 해준다. 이는 앱 모듈과 스토리보드의 영역들을 좀더 작게 관리 하기 쉽게 유지가 가능하게 해주며 더 이해하기 쉬울 뿐만 아니라 개발 팀으로 협업시 소스 통합을 좀더 쉽게 할 수 있다.
 
-## 스토리보드 단순화하기 
+### 스토리보드 단순화하기 
 
-  어떻게 스토리 보드 참조가 동작하는 지 알기위해서, 이미 만들어진 프로젝트를 가져와서 그 구조를 단순화해보자.  만약 책을 따라 실습을 하고 싶다면 [Github][1]를 통해 프로젝트 소스를 다운받을 수 있다.
+  어떻게 스토리 보드 참조가 동작하는 지 알기위해서, 이미 만들어진 프로젝트를 가져와서 그 구조를 단순화해보자.  만약 책을 따라 실습을 하고 싶다면 [Github](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/03-Storyboard-References)를 통해 프로젝트 소스를 다운받을 수 있다.
   우리 시작할 곳인 OldMain.Storyboard 는 오직 참조용으로 프로젝트에 포함되어 있으며 직접 실습하고 싶다면 프로젝트내 모든 스토리보드들 지우고 Oldmain.Storyboard를 Main.Storyboard로 파일명을 수정하면 된다.
 
-아래 스크린샷은 최종 스토리보드의 모습이다.
+아래 스크린샷은 본 스토리보드 모습이다.
+
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/oldStoryboard.png)
 
   스크린샷을 보면 알 수 있듯이, 우리는 탭바 컨트럴러를 Initial View  Controller(첫화면 뷰 컨트롤러) 로 사용할 것이다. 이 탭바 컨트러러는 각기 다른 루트 뷰 컨트럴러를 가진는 3개의 네비게이션 컨트롤러를 가진다. 첫번째는 연락처 리스트의 테이블 컨트롤러이고 두번째는 즐겨찾기 연락처의 또 다른 테이블 컨트럴러이다. 이들 둘 모두 같은 상세 연락처 뷰 컨트럴러로 링크된다. 세번째 네비케이션 컨트럴러는 계정 상세 정보, feedback 화면, about 화면을 포함한 어플리케이션 전반적인 정보들을 가진다.
 
 이 어플리케이션이 아직 복잡함과는 거리가 멀다 하더라도 스토리 보드는 충분히 커졌다고 할 수 있다. 나는 과거에 이것들 보다 10배가 넘는 수의 뷰 컨트럴로를 가지는 스토리보드들을 봤왔고 우리 모두 알듯이, 이것은 곧 관리가 거의 불가능해지기 십상이다. 하지마나 이제 이 스토리보드를을 분할 할 수 있다. 그럼 어디서 시작해야 될까? 우리의 경우에는 3개로 구획으로 구분할 수 있다. 우리는 눈으로 각 컨텐츠가 각 구획의 텝바 컨트럴러로 나눠져 있는 것을 쉽게 알 수 있다.
 
-  우리는 가장 쉬운 케이스부터 시작할 것이다. Main.stroyboard(이하: 메인 스토리보드) 오른쪽 편으로 어플리케이션에 대해 더 많은 정보를 제공하는 뷰 컨트럴러들을 볼 수 있을 것이다. 이 뷰 컨트럴러 들은 독립적이고 다른 컨트럴로들이 링크된 어떤 공통 뷰에도 링크 되어 있지 않다.  
 
-  이제 그냥 이 뷰 컨트럴러들의 드레그하여 하이라이트 하게 하여 선택만 하면 된다. 선택이 됐다면, Xocde menu bar의 “Editor” 를 선택후 “Refactor to Storyboard” 를 선택해주자.
+우리는 가장 쉬운 케이스부터 시작할 것이다. Main.stroyboard(이하: 메인 스토리보드) 오른쪽 편으로 어플리케이션에 대해 더 많은 정보를 제공하는 뷰 컨트럴러들을 볼 수 있을 것이다. 이 뷰 컨트럴러 들은 독립적이고 다른 컨트럴로들이 링크된 어떤 공통 뷰에도 링크 되어 있지 않다.  
+
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/settingsScreens.png)
+
+이제 그냥 이 뷰 컨트럴러들의 드레그하여 하이라이트 하게 하여 선택만 하면 된다. 선택이 됐다면, Xocde menu bar의 “Editor” 를 선택후 “Refactor to Storyboard” 를 선택해주자.
+
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/refactorMenu.png)
 
 그 스토리보드에 More.storyboard 라고 이름지어주고 Save 눌러주자. 그럼 More.storyboard 파일이 어플리케이션에 추가되고 열려질것이다.
 
-이제 스토리보드가 만들어졌다는 걸 알 수 있을것이다. 이제 Main.storyboard로 돌아가게 되면 탭바 컨트럴러들중 하나가 Storyboard Reference(스토리보드 참조)로 바뀐 것을 볼 수 있다.
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/moreStoryboard.png)
 
- 우리는 UI의 한 구휙 전체를 별도의 스토리를 보드로 빼낼 수 있게 됐다. 이는 뷰간 연관 관계를 분리할 수 있게 해 줄 뿐 아니라 앱의 다른 파트에서 스토리보드 재사용이 가능케 해준다. 우리의 경우는 특별히 유용한 경우 가 아니긴 하지만 이는 다른 많은 케이스에 적용할 수 있는 가치가 있는 것이 될것이다.
+이제 스토리보드가 만들어졌진 걸 볼 수 있다. 이제 Main.storyboard로 돌아가게 되면 탭바 컨트럴러들중 하나가 Storyboard Reference(스토리보드 참조)로 바뀐 것을 볼 수 있다.
+
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/mainReference.png)
+
+우리는 UI의 한 구휙 전체를 별도의 스토리를 보드로 빼낼 수 있게 됐다. 이는 뷰간 연관 관계를 분리할 수 있게 해 줄 뿐 아니라 앱의 다른 파트에서 스토리보드 재사용이 가능케 해준다. 우리의 경우는 특별히 유용한 경우 가 아니긴 하지만 이는 다른 많은 케이스에 적용할 수 있는 가치가 있는 것이 될것이다.
 
 이제 앱의 다른 구역들을 별도의 스토리보드로 빼는 걸 해보자. 이 구역들은 공통의 뷰 컨트롤러를 참조하기 때문에 처음 것보다 다소 복잡할 수는 있다. 두 테이블 뷰 모두 연락처 Contact Detail 컨트롤러로 연결되는 세그웨이를 가진다. 
 여기서 두가지 선택을 할 수 있다.
@@ -35,6 +46,8 @@
 
 이제 Main.storyboard 로 돌아가서 contacts 네비게이션 컨트롤러와 테이블 뷰 컨트럴러들을 선택하고 새 스토리보드로 재구성해주자. 그리고 favorites 뷰 컨트롤러에게도 똑같이 해주자. 결과는 다음과 같아질 것이다.
 
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/result.png)
+
 우리는 이제 하나의 Main.storyboard를 5개의 스토리보드 객체들로 나누게 되었다.
 
 - Main.storyboard는 단순히 탭바 컨트롤러와 이에 종속 되지만 다른 스토리보드를 참조하는 뷰 컨트롤러들의 세트를 가지고 았다.
@@ -43,22 +56,28 @@
 - ContactsDetail.storyboard는 Contacts랑 Favorites storyboard에서 연결되는 하나의 뷰 컨트롤러를 가진다.
 - More.storyboard는 앱정보를 보여주는 하나의 뷰 컨트롤러를 가진다.
   
-이렇게 재구조화통해 스토리보드는 훨씬 모듈화되었고 이 것은 앞으로 개발과정에 많이 도움이 될것이다. 미ㅣ
+이렇게 재구조화통해 스토리보드는 훨씬 모듈화되었고 이 것은 앞으로 개발과정에 많은 도움이 될것이다.
 
-## 소토리보드 참조를 통한 특정 뷰 컨트롤러 열기
+### 스토리보드 참조를 통한 특정 뷰 컨트롤러 열기
 
- 지금까지는, 우린 단지 스토리보드의 최초 화면 뷰를 보이고 싶을때 세그웨이에서 스토리보드를 어떻게 보여주는 지만 보여줬었다. 
+지금까지는, 우린 단지 스토리보드의 최초 화면 뷰를 보이고 싶을때 세그웨이에서 스토리보드를 어떻게 보여주는 지만 보여줬었다. 
  그리고 우리는 아직 리펙토링없이 직접 스토리보드 참조를 추가하는 방법에 대해서도 보지 않았다.  예를 들어 우리가 설정을 거치지 않고 Contacts 테이블 뷰컨트롤러 우측 상단에 계정 정보를 빠르게 보여주는 UIBarButtonItem을 추가하고 싶다면 어떻게 해야될까?
 
-먼저 Contacts.Storyboard를 열고 테이블 뷰컨트롤러 네비게이션바 위에   UIBarButtonItem 드레그하여 위치시켜보자. 그리고 타이틀을 “Account”로 해주자. 이 것이 끝나면 새 “Storyboard Reference” 오브젝트를 인터페이스 빌더 오브젝트 레퍼런스 패널에서 찾아보자. 그 것을 Contacts 스토리보드에 드레그해서 넣고 속성 inspector를 열자. “More” 스토리보드를 선택하고 “Referenced ID” 란에 “accountViewController” 라고 입력하자. 이는 more 스토리보드의 initial 뷰컨트롤러 대신에 account details 뷰컨트롤러를 참조하게 해준다.
+먼저 Contacts.Storyboard를 열고 테이블 뷰컨트롤러 네비게이션바 위에   UIBarButtonItem 드레그하여 위치시켜보자. 그리고 타이틀을 “Account”로 해주자. 이 것이 끝나면 새 “Storyboard Reference” 오브젝트를 인터페이스 빌더 오브젝트 레퍼런스 패널에서 찾아보자. 그 것을 Contacts 스토리보드에 드레그해서 넣고 속성 inspector를 열자. 
 
-  account 뷰 컨트롤러 에 대한 스토리보드 레퍼런스가 나타나면, account button을 선택한후 Ctrol + 클릭후 새로 만들어진 스토리보드 레퍼렌스에 드레그 하여 새로운 세그웨이를 만들자. 
+“More” 스토리보드를 선택하고 “Referenced ID” 란에 “accountViewController” 라고 입력하자. 이는 more 스토리보드의 initial 뷰컨트롤러 대신에 account details 뷰컨트롤러를 참조하게 해준다.
 
-  마지막 단계는 account 뷰컨트롤러에게 방금 명명한 identifier를 주자. 그럼 More.storyboard를 열고 account 뷰컨트롤러를 선택한후 identity inspector를 열고 Storyboard ID를 “accountViewController로 설정한다. 이제 앱을 실행하고 Account 버튼을 탭하면 account 뷰컨트롤러가 contacts navigation 컨트롤러 스텍으로 푸쉬되는 것을 확인할 수 잇다. 
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/accountViewController.png)
 
-  우리가 봤듯이, 스토리보드 참조를 추가(refactoring 툴이나 직접 interface builder에서 추가)는 간단하고 쉽고 효과적이다. 이는 스토리보드들로 재사용 가능한 컴퍼넌트들을 생성할 수 있고 UI를 모뮬화시킬 수 있도록 도와 준다. 전과 같이 이 튜토리얼의 결과물은 [깃허브에서 찾을수 있다](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/03-Storyboard-References).
+account 뷰 컨트롤러 에 대한 스토리보드 레퍼런스가 나타나면, account button을 선택한후 Ctrol + 클릭후 새로 만들어진 스토리보드 레퍼렌스에 드레그 하여 새로운 세그웨이를 만들자. 
 
-## 더 읽을 거리
+![image](https://www.shinobicontrols.com/wp-content/uploads/2015/07/accountSegue.png)
+
+마지막 단계는 account 뷰컨트롤러에게 방금 명명한 identifier를 주자. 그럼 More.storyboard를 열고 account 뷰컨트롤러를 선택한후 identity inspector를 열고 Storyboard ID를 “accountViewController로 설정한다. 이제 앱을 실행하고 Account 버튼을 탭하면 account 뷰컨트롤러가 contacts navigation 컨트롤러 스텍으로 푸쉬되는 것을 확인할 수 잇다. 
+
+우리가 봤듯이, 스토리보드 참조를 추가(refactoring 툴이나 직접 interface builder에서 추가)는 간단하고 쉽고 효과적이다. 이는 스토리보드들로 재사용 가능한 컴퍼넌트들을 생성할 수 있고 UI를 모뮬화시킬 수 있도록 도와 준다. 전과 같이 이 튜토리얼의 결과물은 [깃허브에서 찾을수 있다](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/03-Storyboard-References).
+
+### 더 읽을 거리
 
 Xcode 7 스토리보드 참조에 대한 좀 더 많은 정보로는 WWDC 2015의 세션, [What’s New in Storyboards](https://developer.apple.com/videos/play/wwdc2015-215/) 를 보는 것을 추천한다. 처음 20분 정도가 새기능 스토리보드 참조에 대해서 다룬다.
 
