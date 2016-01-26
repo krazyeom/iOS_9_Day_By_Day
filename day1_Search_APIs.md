@@ -22,16 +22,16 @@ CoreSpotlight는 당신의 App 안의 어떤 컨텐츠든 index 할 수 있도�
 
 ## Using the Core Spotlight APIs
 
-The NSUserActivity and Web Markup APIs are relatively simple to use, however CoreSpotlight is a little more complex. To demonstrate how the new Core Spotlight APIs work, let's create a simple app that shows a list of our friends, and then a picture of them when you tap on their name. You can find the code on Github and follow along with what we are building there.
+NSUserActivity와 Web Markup API는 비교적 쉬운데 반해 CoreSpotlight 는 약간 더 복잡하다. 새로운 Core Spotlight API가 어떻게 동작하는지 알아보기 위해, 우리들의 친구 목록을 보여주고 이름을 선택했을 때 사진을 보여주는 간단한 앱을 만들어 보자. Github에서 code를 찾아 그곳에 만들어 둔 것과 함께 따라 갈 수 있다.
 
 ![friendApp-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/friendApp-576x1024.png)
 
-This app has a simple storyboard containing `FriendTableViewController` which displays a simple list of our friends names, and `FriendViewController` which displays details about each friend.
+이 app은 간단한 친구의 이름을 보여주는 `FriendTableViewController`와 각 친구에 대해 상세히 보여주는 `FriendViewController`를 포함하는 간단한 storyboard를 갖는다.
 
 ![storyboard](https://www.shinobicontrols.com/wp-content/uploads/2015/07/storyboard.png)
 
-All of the information about our friends is stored in the `Datasource` class. This is where we create the models that store information about our friends, and also where we will include the logic to store the friends into the Core Spotlight index.
-First of all, we override the `init()` method of the `Datasource` class, where we create and store an array of `Person` objects. You'll probably want to load yours from a database or from a server somewhere, but for demonstration purposes,  we will simply create some dummy data.
+우리들의 친구들에 대한 모든 정보는 `Datasource` class에 저장되어 있다. 우리의 친구에 대한 정보를 저장하는 model을 만들고 또한 Core Spotlight index에 친구를 저장하기 위한 logic이 포함 된 곳 이다.
+우선, `Datasource` class에서 `Person` object의 목록을 만들고 저장하는 `init()` 함수를 override 한다. 당신은 아마도 database나 어딘가의 server로 부터 받기를 원할 것이지만 데모 목적을 위해 단순히 몇가지 dummy data를 만들것이다.
 
 	override init () {
 		let becky = Person()
@@ -43,13 +43,13 @@ First of all, we override the `init()` method of the `Datasource` class, where w
 		
 		people = [becky, ben, jane, pete, ray, tom]
 	}
-	
-Once the data is stored in the `people` array, the `Datasource` is ready to use!
-Now that the data is ready, the `FriendTableViewController` can create an instance of `Datasource` to use when its table view requests cells for display.
+
+그 data가 `people` array에 저장되면 `Datasource` 를 사용할 준비가 됐다! 
+이제 data는 준비가 되어 `FriendTableViewController` 는 table view의 각 셀을 표시하기 위한 요청을 할 때 사용하기 위한 `Datasource`의 instance를 만들 수 있다.
 
 	let datasource = DataSource()
 	
-In the `cellForRowAtIndexPath` function, displaying the contents in the cell is as simple as:
+`cellForRowAtIndexPath` 함수에서 cell의 내용을 표시하는 건 다음과 같이 간단하다:
 
 	let person = datasource.people[indexPath.row]
 	cell?.textLabel?.text = person.name
