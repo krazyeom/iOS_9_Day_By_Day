@@ -54,11 +54,9 @@ NSUserActivity와 Web Markup API는 비교적 쉬운데 반해 CoreSpotlight 는
 	cell?.textLabel?.text = person.name
 
 
-### Saving the person entries to Core Spotlight
+가상의 data가 존재하고 iOS 9에서 사용할 수 있는 새로운 API를 사용하여 Core Spotlight에 저장할 수 있다. `Datasource` class로 돌아와서 `savePeopleToIndex` 함수를 정의한다. `FriendTableViewController`는 view가 load된 후에 이 함수를 호출할 수 있다.
 
-Now the mocked data exists, we can store it in Core Spotlight using the new APIs available in iOS 9. Back in the `Datasource` class, we have defined a function, `savePeopleToIndex`.  The `FriendTableViewController` can call this function when the view has loaded.
-
-In the function, we iterate throuh each person in the `people` array, creating a `CSSearchableItem` for each of them and storing them into a temporary array named `searchableItems`.
+그 함수에서 `people` array에서 각 person을 돌면서 각각의 `CSSearchableItem`을 만들고 `searchableItems`라는 임시 array에 저장한다.
 
 	let attributeSet = CSSearchableItemAttributeSet(itemContentType: "image" as String)
 	attributeSet.title = person.name
@@ -68,8 +66,8 @@ In the function, we iterate throuh each person in the `people` array, creating a
 	let item = CSSearchableItem(uniqueIdentifier: person.id, domainIdentifier: "com.ios9daybyday.SearchAPIs.people", attributeSet: attributeSet)
 	searchableItems.append(item)
 	
-The final step is to call `indexSearchableItems` on the default `CSSearchableIdex`.
-This actually saves the items into CoreSpotlight so that users can search for them and so they appear in search results.
+마지막 단계는 기본 `CSSearchableIndex`에서 `indexSearchableItems`를 호출하는 것이다.
+이 것은 실제로 사용자들이 검색할 수 있고 그 결과를 볼 수 있도록 CoreSpotlight에 저장하는 것이다.
 
 	CSSearchableIdex.defaultSearchableIndex().indexSearchableItems(searchableItems, completionHandler: { error -> Void in
 		if error != nil {
@@ -77,7 +75,7 @@ This actually saves the items into CoreSpotlight so that users can search for th
 		}
 	})
 	
-And that's it! When you run your application, the data will be stored. When you search in spotlight, your friends should appear!
+그 뿐! application 을 실행할 때 그 data는 저장될 것이다. spotlight에서 검색할 때 당신의 친구가 나타날 것이다.
 
 ![searchResults1-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/searchResults1-576x1024.png)
 
