@@ -10,10 +10,9 @@ NSUserActivity API는 Handoff를 위해 iOS 8에서 소개되었지만 iOS 9에�
 
 ### Web Markup
 
-Web Markup allows apps that mirror their content on a website to index their content in Spotlight. Users don't need to have the app installed on their device for results to appear in Spotlight. Apple's Indexer will now crawl the web looking for this particular markup in your website. This is then provided to users in both Safari and Spotlight
+Web Markup은 website의 content를 Spotlight에서 content를 index할 수 있도록 반영한다. 사용자는 Spotlight에서 검색 결과를 위해 그들의 device에 app을 설치하지 않아도 된다. Apple의 indexer는 당신의 website의 특수한 markup을 web에서 찾아 긁어온다. 이 후 Safari와 Spotlight 모두에서 사용자에게 제공한다.
 
-The fact that results can appear even when your app is **not** installed on a users's device could lead to a lot more exposure to potential users. The deep links from your applications that you expose as public to the Search APIs will be stored in Apple's cloud index. To learn more about Web Markup, take a look at Apples's [Use Web Markup to Make App Content Searchable](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW4) documentation.
-
+사용자의 device에 앱이 **설치되지 않았을** 때도 결과가 보인다는 건 더 많은 잠재적인 사용자에게 노출될 수 있도록 해준다. 당신의 application으로부터 Search API로 공개적으로 노출한 deep link 는 Apple의 cloud index에 저장된다. Web Markup에 대해 더 알아보기 위해 Apple의 [App Content가 검색가능하도록 하는 Web Markup 사용](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW4)  문서를 살펴보자.
 
 ### CoreSpotlight
 
