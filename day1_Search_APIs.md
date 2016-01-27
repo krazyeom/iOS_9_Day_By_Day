@@ -24,11 +24,11 @@ CoreSpotlight는 당신의 App 안의 어떤 콘텐츠든 index 할 수 있도�
 
 NSUserActivity와 Web Markup API는 비교적 쉬운 데 비해 CoreSpotlight는 약간 더 복잡하다. 새로운 Core Spotlight API가 어떻게 동작하는지 알아보기 위해, 우리들의 친구 목록을 보여주고 이름을 선택했을 때 사진을 보여주는 간단한 앱을 만들어 보자. Github에서 code를 찾아 그곳에 만들어 둔 것과 함께 따라갈 수 있다.
 
-![friendApp-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/friendApp-576x1024.png)
+![friendApp-576x1024](./images/friendApp.png)
 
 이 app은 간단한 친구의 이름을 보여주는 `FriendTableViewController`와 각 친구에 대해 상세히 보여주는 `FriendViewController`를 포함하는 간단한 storyboard를 가진다.
 
-![storyboard](https://www.shinobicontrols.com/wp-content/uploads/2015/07/storyboard.png)
+![storyboard](./images/storyboard.png)
 
 우리들의 친구들에 대한 모든 정보는 `Datasource` class에 저장되어 있다. 우리의 친구에 대한 정보를 저장하는 model을 만들고 또한 Core Spotlight index에 친구를 저장하기 위한 logic이 포함된 곳이다.
 
@@ -80,7 +80,7 @@ NSUserActivity와 Web Markup API는 비교적 쉬운 데 비해 CoreSpotlight는
 	
 그리고 그뿐이다! application을 실행할 때 그 data는 저장될 것이다. spotlight에서 검색할 때 당신의 친구가 나타날 것이다.
 
-![searchResults1-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/searchResults1-576x1024.png)
+![searchResults1-576x1024](./images/searchResults1.png)
 
 ### 사용자에 대한 응답
 
@@ -105,7 +105,7 @@ NSUserActivity와 Web Markup API는 비교적 쉬운 데 비해 CoreSpotlight는
 
 `userInfo` dictionary에서 정보를 가져온 후 application의 navigation controller를 찾고 root로 pop을(사용자의 눈에 띄지 않으니 animation 없이) 하고 `FriendTableViewController`의 `showFriend` 함수를 호출한다. 이것이 어떻게 동작하는지 자세히 다루지는 않지만, 이건 주어진 ID로 datasource에 있는 친구를 찾은 후 새로운 view controller를 navigation controller stack에 넣는 것이다. 이것이 전부다. 사용자가 spotlight에서 친구를 누를 때 이제 볼 수 있을 것이다:
 
-![backToSearch-576xx1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/backToSearch-576x1024.png)
+![backToSearch-576xx1024](./images/backToSearch.png)
 
 당신도 볼 수 있듯, 이제 당신 app의 왼쪽 위 모서리에 "검색(으)로 돌아기기" option이 있다. 이것은 사용자가 바로 그들의 친구의 이름을 처음 선택한 검색화면으로 돌아갈 수 있도록 한다. 그들은 여전히 표준 back button을 이용해서 app을 돌아다닐 수도 있다.
 
