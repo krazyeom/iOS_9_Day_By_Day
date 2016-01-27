@@ -23,7 +23,7 @@ CloudKit JS의 기능을 보여줄 데모앱을 사용하면 공유노트(shared
 
 ![완성된 첫 web application](images/CloudNotes.png)
 
-자 이제 어떻게 이 app이 만들어 졌는지 하나씩 보자. CloudKit앱을 만들때 첫 걸음은 iCloud developer dashboard를 open하는 것이다(iOS 나 JS나 동일). 이 과정을 통해서 여러분들은 앱의 상세사항을 변경할 수 있고, record type설정, security roles설정, 데이터입력, 또 기타등등을 할 수 있다. 참고내용은여기서 찾아보자  [https://icloud.developer.apple.com/dashboard](https://icloud.developer.apple.com/dashboard).
+자 이제 어떻게 이 app이 만들어 졌는지 하나씩 보자. CloudKit앱을 만들때 첫 걸음은 iCloud developer dashboard를 open하는 것이다(iOS 나 JS나 동일). 이 과정을 통해 여러분들은 앱의 상세사항을 변경할 수 있고, record type설정, security roles설정, 데이터입력, 또 기타작업을 할 수 있다. 참고내용은여기서 찾아보자  [https://icloud.developer.apple.com/dashboard](https://icloud.developer.apple.com/dashboard).
 
 새 App의 이름은 CloudNotes이다. 우선 모든세팅은 default로 두자.
 
@@ -59,7 +59,7 @@ add를 클릭하시면 title과 content를 넣을 수 있는 옵션이 주어질
 
 `cloudNotes.js`내용을 보자 그리고 어떻게 우리가 CloudKit로 부터 data를 요청할 수 있는지 보자.
 
-data 를 요청하기에 앞서, 반드시 CloudKit API 이 로딩할 시간을 주어야 한다. 따라서 해당 내용을 window eventListener 에 코딩하겠다. 이 코드는 'cloudkitloaded'이벤트를 모니터링한다(listens)
+Data 를 요청하기에 앞서, 반드시 CloudKit API 이 로딩할 시간을 주어야 한다. 따라서 해당 내용을 window eventListener 에 코딩하겠다. 이 코드는 'cloudkitloaded'이벤트를 모니터링한다(listens)
 
 	window.addEventListener('cloudkitloaded', function() {
 
@@ -197,7 +197,7 @@ Configuration panel 은 이제 아래처럼 보일 것이다.
 
 이미 시장에는 넘쳐나는 서드파티 cloud 서비스들이 더 많은 기능과 세련된 문서화로 출시되고 있고, 타 플랫폼을 위한 네이티브 SDK들도 제공된다. 수차례 시도해보았지만 시뮬레이터에서 작동하는 CloudKit 서비스는 아직까지 보지 못 했다. 이른 시간 내에 이 사항이 개선되지 않는다면 이는 개발시 또 다른 장벽이 될 것으로 보인다.
 
-확실히 CloudKit 를 사용할 경우가 발생할 것이기 때문에 모두들 한번씩 코딩해 볼 것을 권한다. 다만 이른 장래에 타 플랫폼에서 데이터를 access할 필요가 발생할 것이라면 별도 고려해 보시기 바란다.
+언젠가 CloudKit 를 사용할 기회가 생길테니 모두들 한번씩 코딩해 볼 것을 권한다. 다만 이른 장래에 타 플랫폼에서 데이터를 access할 필요가 발생할 것이라면 별도 고려해 보시기 바란다.
 
 ## 추가적인 읽을 거리
 앞서 나온 CloudKit JS 와 Web Services 에 관한 자세한 정보는 WWDC session 710 를 보기바란다 , [CloudKit JS and Web Services](https://developer.apple.com/videos/wwdc/2015/?id=608). 우리가 여기서 만들어본 프로젝트는 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/13-CloudKit-Web-Services)에서 볼 수 있음을 잊지말자.
