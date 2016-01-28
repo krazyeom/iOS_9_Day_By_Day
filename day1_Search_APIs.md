@@ -1,37 +1,38 @@
 # Day 1: Search APIs
 
-iOS 9 이전에는 앱의 이름으로 찾는 것으로만 spotlight를 사용 할 수 있었다. 새로운 iOS 9의 Search API 발표와 함께, 애플은 개발자가 자신의 App에서 어떤 Content가 Index 되기 원하고 spotlight에서 어떻게 가능한 잘 보여줄지, 또한 그 결과 중 하나를 선택했을 때 어떤 동작이 일어날지를 선택할 수 있게 했다.
+iOS 9 이전에는 앱의 이름으로 찾는 것으로만 spotlight를 사용할 수 있었다. 새로운 iOS 9의 Search API 발표와 함께, 애플은 개발자가 자신의 App에서 어떤 Content가 Index 되기 원하고 spotlight에서 어떻게 가능한 잘 보여줄지, 또한 그 결과 중 하나를 선택했을 때 어떤 동작이 일어날지를 선택할 수 있게 했다.
 
-## The 3 APIs
+
+## 3개의 API
 
 ### NSUserAcitity
 
-NSUserActivity API는 Handoff를 위해 iOS 8에서 소개되었지만 iOS 9에서 Activity의 검색이 가능하게 되었다. 당신은 이제 이런 activity에 metadata를 줄 수 있고 그것은 spotlight가 activity를 index 할 수 있다는 걸 의미한다. 이 것은 웹에서 browsing 할 때의 history stack과 유사한 역할을 한다. 사용자는 spotlight를 통해 더 빠르게 그의 최근 activity을 열 수 있다.
+NSUserActivity API는 Handoff를 위해 iOS 8에서 소개되었지만, iOS 9에서 Activity의 검색이 가능하게 되었다. 당신은 이제 이런 activity에 metadata를 줄 수 있고 그것은 spotlight가 activity를 index 할 수 있다는 걸 의미한다. 이것은 웹에서 browsing 할 때의 history stack과 유사한 역할을 한다. 사용자는 spotlight를 통해 더 빠르게 그의 최근 activity를 열 수 있다.
 
 ### Web Markup
 
-Web Markup allows apps that mirror their content on a website to index their content in Spotlight. Users don't need to have the app installed on their device for results to appear in Spotlight. Apple's Indexer will now crawl the web looking for this particular markup in your website. This is then provided to users in both Safari and Spotlight
+Web Markup은 website의 content를 Spotlight에서 content를 index 할 수 있도록 반영한다. 사용자는 Spotlight에서 검색 결과를 위해 그들의 device에 app을 설치하지 않아도 된다. Apple의 indexer는 당신의 website의 특수한 markup을 web에서 찾아 긁어온다. 이후 Safari와 Spotlight 모두에서 사용자에게 제공한다.
 
-The fact that results can appear even when your app is **not** installed on a users's device could lead to a lot more exposure to potential users. The deep links from your applications that you expose as public to the Search APIs will be stored in Apple's cloud index. To learn more about Web Markup, take a look at Apples's [Use Web Markup to Make App Content Searchable](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW4) documentation.
-
+사용자의 device에 앱이 설치되지 **않았을** 때도 결과가 보인다는 건 더 많은 잠재적인 사용자에게 노출될 수 있도록 해준다. 당신의 application으로부터 Search API로 공개적으로 노출한 deep link는 Apple의 cloud index에 저장된다. Web Markup에 대해 더 알아보기 위해 Apple의 [Use Web Markup to Make App Content Searchable](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW4)  문서를 살펴보자.
 
 ### CoreSpotlight
 
-CoreSpotlight is a new iOS 9 framework which allows you to index any content inside of your app. While NSUserActivity is useful for saving the user's history, with this API, you can index any data you like. It essentially provides you with low level access to the CoreSpotlight index on the user's device.
+CoreSpotlight는 당신의 App 안의 어떤 콘텐츠든 index 할 수 있도록 해주는 새로운 iOS 9의 framework이다. NSUserActivity가 사용자의 history를 저장하는 데는 유용하지만 이 API와 함께 당신이 원하는 어떤 data도 index 할 수 있다. 이 것은 근본적으로 사용자의 Device의 CoreSpotlight를 통해 low level의 접근을 제공한다.
 
 
-## Using the Core Spotlight APIs
+## Core Spotlight API 사용하기
 
-The NSUserActivity and Web Markup APIs are relatively simple to use, however CoreSpotlight is a little more complex. To demonstrate how the new Core Spotlight APIs work, let's create a simple app that shows a list of our friends, and then a picture of them when you tap on their name. You can find the code on Github and follow along with what we are building there.
+NSUserActivity와 Web Markup API는 비교적 쉬운 데 비해 CoreSpotlight는 약간 더 복잡하다. 새로운 Core Spotlight API가 어떻게 동작하는지 알아보기 위해, 우리들의 친구 목록을 보여주고 이름을 선택했을 때 사진을 보여주는 간단한 앱을 만들어 보자. Github에서 code를 찾아 그곳에 만들어 둔 것과 함께 따라갈 수 있다.
 
-![friendApp-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/friendApp-576x1024.png)
+![friendApp-576x1024](./images/friendApp.png)
 
-This app has a simple storyboard containing `FriendTableViewController` which displays a simple list of our friends names, and `FriendViewController` which displays details about each friend.
+이 app은 간단한 친구의 이름을 보여주는 `FriendTableViewController`와 각 친구에 대해 상세히 보여주는 `FriendViewController`를 포함하는 간단한 storyboard를 가진다.
 
-![storyboard](https://www.shinobicontrols.com/wp-content/uploads/2015/07/storyboard.png)
+![storyboard](./images/storyboard.png)
 
-All of the information about our friends is stored in the `Datasource` class. This is where we create the models that store information about our friends, and also where we will include the logic to store the friends into the Core Spotlight index.
-First of all, we override the `init()` method of the `Datasource` class, where we create and store an array of `Person` objects. You'll probably want to load yours from a database or from a server somewhere, but for demonstration purposes,  we will simply create some dummy data.
+우리들의 친구들에 대한 모든 정보는 `Datasource` class에 저장되어 있다. 우리의 친구에 대한 정보를 저장하는 model을 만들고 또한 Core Spotlight index에 친구를 저장하기 위한 logic이 포함된 곳이다.
+
+우선, `Datasource` class에서 `Person` object의 목록을 만들고 저장하는 `init()` 함수를 override 한다. 당신은 아마도 database나 어딘가의 server로부터 받기를 원할 것이지만 데모 목적을 위해 단순히 몇 가지 dummy data를 만들 것이다.
 
 	override init () {
 		let becky = Person()
@@ -43,23 +44,23 @@ First of all, we override the `init()` method of the `Datasource` class, where w
 		
 		people = [becky, ben, jane, pete, ray, tom]
 	}
-	
-Once the data is stored in the `people` array, the `Datasource` is ready to use!
-Now that the data is ready, the `FriendTableViewController` can create an instance of `Datasource` to use when its table view requests cells for display.
+
+그 data가 `people` array에 저장되면 `Datasource` 를 사용할 준비가 됐다! 
+
+이제 data는 준비되었고 `FriendTableViewController` 는 table view의 각 셀을 표시하기 위한 요청을 할 때 사용하기 위한 `Datasource`의 instance를 만들 수 있다.
 
 	let datasource = DataSource()
 	
-In the `cellForRowAtIndexPath` function, displaying the contents in the cell is as simple as:
+`cellForRowAtIndexPath` 함수에서 cell의 내용을 표시하는 건 다음과 같이 간단하다:
 
 	let person = datasource.people[indexPath.row]
 	cell?.textLabel?.text = person.name
 
+### Core Spotligh에 person entry 저장하기
 
-### Saving the person entries to Core Spotlight
+가상의 data가 존재하고 iOS 9에서 사용할 수 있는 새로운 API를 사용하여 Core Spotlight에 저장할 수 있다. `Datasource` class로 돌아와서 `savePeopleToIndex` 함수를 정의한다. `FriendTableViewController`는 view가 load 된 후에 이 함수를 호출할 수 있다.
 
-Now the mocked data exists, we can store it in Core Spotlight using the new APIs available in iOS 9. Back in the `Datasource` class, we have defined a function, `savePeopleToIndex`.  The `FriendTableViewController` can call this function when the view has loaded.
-
-In the function, we iterate throuh each person in the `people` array, creating a `CSSearchableItem` for each of them and storing them into a temporary array named `searchableItems`.
+그 함수에서 `people` array에서 각 person을 돌면서 각각의 `CSSearchableItem`을 만들고 `searchableItems`라는 임시 array에 저장한다.
 
 	let attributeSet = CSSearchableItemAttributeSet(itemContentType: "image" as String)
 	attributeSet.title = person.name
@@ -69,8 +70,7 @@ In the function, we iterate throuh each person in the `people` array, creating a
 	let item = CSSearchableItem(uniqueIdentifier: person.id, domainIdentifier: "com.ios9daybyday.SearchAPIs.people", attributeSet: attributeSet)
 	searchableItems.append(item)
 	
-The final step is to call `indexSearchableItems` on the default `CSSearchableIdex`.
-This actually saves the items into CoreSpotlight so that users can search for them and so they appear in search results.
+마지막 단계는 기본 `CSSearchableIndex`에서 `indexSearchableItems`를 호출하는 것이다. 이것은 실제로 사용자들이 검색할 수 있고 그 결과를 볼 수 있도록 CoreSpotlight에 저장하는 것이다.
 
 	CSSearchableIdex.defaultSearchableIndex().indexSearchableItems(searchableItems, completionHandler: { error -> Void in
 		if error != nil {
@@ -78,16 +78,15 @@ This actually saves the items into CoreSpotlight so that users can search for th
 		}
 	})
 	
-And that's it! When you run your application, the data will be stored. When you search in spotlight, your friends should appear!
+그리고 그뿐이다! application을 실행할 때 그 data는 저장될 것이다. spotlight에서 검색할 때 당신의 친구가 나타날 것이다.
 
-![searchResults1-576x1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/searchResults1-576x1024.png)
+![searchResults1-576x1024](./images/searchResults1.png)
 
+### 사용자에 대한 응답
 
-### Responding to User
+지금 사용자는 spotlight에서 당신의 결과를 볼 수 있고 선택하길 바란다! 하지만 그랬을 때 무엇이 일어날까? 음, 결과를 누른 후 잠시 뒤 당신의 app의 main screen이 열릴 것이다. 사용자의 선택한 친구가 보이길 원한다면 조금 더 작업을 해야 한다. app의 `AppDelegate`에 있는 `continueUserActivity UIApplicationDelegate`를 통해 app을 열 때의 동작을 지정할 수 있다.
 
-Now users can see your results in Spotlight, hopefully they will tap on them! But what happens when they do? Well, at the minute, tapping a result will just open the main screen of your app. If you wish to display the friend that the user tapped on, there's a little more work involved. We can specify our app's behaviour when it is opened this way through the `continueUserActivity` `UIApplicationDelegate` method in the app's `AppDelegate`.
-
-Here's  the entire implementation of this method:
+이 method의 전체 구현은 다음과 같다:
 
 	func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
 		// Find the ID from the user info
@@ -102,28 +101,25 @@ Here's  the entire implementation of this method:
 		return true
 	}
 	
-As you can see, the information we previously saved into the CoreSpotlight index with the `indexSearchableItems` function is now available to us in the `userActivity.userInfo` dictionary. The only thing we are interested in for the sample is the friend ID, which was stored into the index as the item's kCSSeachableItemActivityIdentifier.
+당신도 볼 수 있듯, `userActivity.userInfo` dictionary 안에 있는 `indexSearchableItems` 함수로 우리가 이전에 CoreSpotlight index에 저장한 정보를 사용할 수 있다. sample로써 관심이 있는 유일한 건 item의 kCSSearchableItemActivityIdentifier로 저장된 friend ID이다.
 
-Once we have extracted that information from the `userInfo` dictionary, we can find the application's navigation controller, and pop the root (without animation so it's not noticeable to the user) and then call the `showFriend` function on the `friendTableViewController`. I won't go into detail about how this works, but essentially it finds the friend with the given ID in it's datasource and then pushes a new view controller onto the navigation controller stack. That's all there is to it! Now when the user taps on a friend in spotlight, this is what they will see:
+`userInfo` dictionary에서 정보를 가져온 후 application의 navigation controller를 찾고 root로 pop을(사용자의 눈에 띄지 않으니 animation 없이) 하고 `FriendTableViewController`의 `showFriend` 함수를 호출한다. 이것이 어떻게 동작하는지 자세히 다루지는 않지만, 이건 주어진 ID로 datasource에 있는 친구를 찾은 후 새로운 view controller를 navigation controller stack에 넣는 것이다. 이것이 전부다. 사용자가 spotlight에서 친구를 누를 때 이제 볼 수 있을 것이다:
 
-![backToSearch-576xx1024](https://www.shinobicontrols.com/wp-content/uploads/2015/07/backToSearch-576x1024.png)
+![backToSearch-576xx1024](./images/backToSearch.png)
 
-As you can see, now there is a "Back to Search" option in the top left hand corner of your app. This takes the user directly back to the search screen where they first tapped their friend's name. They can still navigate through the app with the standard back button too.
+당신도 볼 수 있듯, 이제 당신 app의 왼쪽 위 모서리에 "검색(으)로 돌아기기" option이 있다. 이것은 사용자가 바로 그들의 친구의 이름을 처음 선택한 검색화면으로 돌아갈 수 있도록 한다. 그들은 여전히 표준 back button을 이용해서 app을 돌아다닐 수도 있다.
 
+### 데모 요약
 
-### Demo Summary
-
-in the demo above, we've seen how easy it is to integrate your application's data with the `CoreSpotlight` index, how powerful it can be when trying to get users to open your app, and how helpful it can be to users looking for  specific content.
-We have **not** covered how to remove data from the index, however. This is important and you should anways try to keep the index that your application uses up to date.
-For information on how to remove old entries from CoreSpotlight, take a look at the `deleteSearchableItemsWithIdentifiers`, `deleteSearchableItemsWithDomainIdentifiers` and `deleteAllSearchableItemsWithCompletionHander` functions.
+위의 demo에서 우리는 `CoreSpotlight` index에 당신의 application의 data를 통합하기가 얼마나 쉬운지, 사용자가 당신의 앱을 열려고 할 때 얼마나 강력한지, 그리고 특정 content를 사용자가 찾는 데 얼마나 도움이 되는지를 봤다. 우리는 그러나 index에서 data를 삭제하는 방법을 커버하지 **않았다**. 이것은 당신의 application이 최신 상태로 사용하도록 index를 유지하는 것과 함께 중요하다.
+CoreSpotlight로부터 오래된 entry를 지우는 방법에 대한 자세한 내용은 `deleteSearchableItemsWithIdentifiers`, `deleteSearchableItemsWithDomainIdentifiers`와 `deleteAllSearchableItemsWithCompletionHander` 함수를 살펴보라.
 
 
-## The Importance of Good Citizenship
+## 좋은 시민성의 중요성
 
-Although it may seem like a good idea to get as much of your content into Spotlight and Safari as possible, think twice before spamming the search indexes with your content. Being a good citizen in the iOS ecosystem is not only important to keep your customers happy, but Apple will also notice. They have clearly invested a lot into protecting relevance. Engagement ratios are tracked and spammers will be moved to the bottom of search results.
+가능한 한 Spotlight와 Safari로 당신의 content를 많이 얻을 수 있다는 건 좋은 생각처럼 보일 수 있지만, 당신의 content로 search index에 spamming을 하기 전에 두 번 생각해라. iOS ecosystem에서 좋은 시민이 되기 위해서는 당신 고객의 행복을 지키는 것뿐만 아니라는 것을 Apple은 또한 알 수 있다. 그들은 타당함을 지키기 위해 많이 투자하고 있다. 참여 비율을 추적하고 spammer는 검색 결과의 맨 아래로 이동한다.
 
 
-## Further Information
+## 추가 정보
 
-For more information on the new Search APIs, I'd recommend watching WWDC session 709, [Introducing Search APIs](https://developer.apple.com/videos/wwdc/2015/?id=709). You may also be interesting in reading the [NSUserActivity Class Reference](https://developer.apple.com/library/prerelease/ios/documentation/Foundation/Reference/NSUserActivity_Class/) as well as the [documentation for CoreSpotlight](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW3).
-
+새로운 Search API에 대한 추가적인 정보로 나는 WWDC session 709, [Introducing Search APIs](https://developer.apple.com/videos/wwdc/2015/?id=709) 를 보는 걸 추천한다. 또한 [NSUserActivity Class Reference](https://developer.apple.com/library/prerelease/ios/documentation/Foundation/Reference/NSUserActivity_Class/) 뿐만 아니라 [CoreSpotlight에 대한 문서](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW3)를 읽는 것도 흥미로울 수 있다.
