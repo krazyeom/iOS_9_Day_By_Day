@@ -6,7 +6,7 @@ iOS9에서 Apple은 여러분의 어플리케이션에서 뷰를 수평 혹은 �
 UIStackView는 여러분을 위해 이 모든것을 해준다. 심지어는 뷰를 추가하고 숨기고 지울 때와 또한 UIStackView 스스로의 레이아웃 속성을 바꿀 때 사이의 상태를 부드럽게 애니메이션하기 위한 지원도 있다.
 
 ###Using UIStackView
-이제부터 우리는 UIStackView를 사용하는 방법의 예제를 구축할 것이다. 완성된 코드는 GitHub를 통해 제공되기 때문에 여러분은 따라할 수 있다. 우리는 UIStackView가 어떻게 작동하는 지 간단한 데모를 구축할 것이고 이는 하단에 UIStackView의 정렬과 분포 속성을 제어하는 분할된 컨트롤(segmented controls)을 가진다.
+이제부터 우리는 UIStackView를 사용하는 방법의 예제를 구축할 것이다. 완성된 코드는 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/04-UIStackView)를 통해 제공되기 때문에 여러분은 따라할 수 있다. 우리는 UIStackView가 어떻게 작동하는 지 간단한 데모를 구축할 것이고 이는 하단에 UIStackView의 정렬과 분포 속성을 제어하는 분할된 컨트롤(segmented controls)을 가진다.
 
 ![image](images/4-1.png)
 
@@ -57,4 +57,4 @@ distriution과 alignment의 다른 조합들과 함께 실행을 시도해보자
 만약 여러분이 UIStackView 레이아웃을 사용하기 위해 변환하고 싶은 존재하는 UI를 가지고 있다면 간단하게 여러분의 뷰에 있는 제약을 지운뒤 그들을 선택하고 인터페이스 빌더 윈도우의 우측 하단에 있는 가장 왼쪽의 버튼을 하자. 이는 여러분의 뷰를 새로운 UIStackView로 바꾸고 빠르게 정렬해준다.
 
 ![image](images/4-3.png)이는 레이아웃을 기반으로 여러분의 존재하는 제약을 여러분을 위한 제약 레이아웃의 대부분을 관리할 수 있는 간단한 스택 뷰로 변환할 것이다.###Further Reading
-Xcode7에서 Storyboard Reference의 더 많은 정보를 위해서는 WWDC session 218, Auto Layout의 신비함, Part.1을 보는 것을 추천한다. Jason Yao는 UIStackView의 기초를 비디오의 첫 15분에서 다뤘고 과거에서 여러분이 필요했던 것 보다 적은 제약으로 어떻게 인터페이스를 만들 수 있는지 보여주는 데모를 만들었다.
+Xcode7에서 Storyboard Reference의 더 많은 정보를 위해서는 WWDC session 218, [Auto Layout의 신비함, Part 1](https://developer.apple.com/videos/play/wwdc2015-215/)을 보는 것을 추천한다. Jason Yao는 UIStackView의 기초를 비디오의 첫 15분에서 다뤘고 과거에서 여러분이 필요했던 것 보다 적은 제약으로 어떻게 인터페이스를 만들 수 있는지 보여주는 데모를 만들었다.
