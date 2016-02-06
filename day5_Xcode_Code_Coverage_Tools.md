@@ -83,7 +83,7 @@ class CodeCoverageTests: XCTestCase {
 
 테스트를 실행하기 전에, 우리는 코드 커버리지가 켜져 있는지 확인해야 한다! 글을 쓰는 시점에서, 이것은 기본적으로 꺼져있다, 그래서 그것을 켜도록 테스트 스키마를 편집해야 한다.
 
-![image](./images/turnOnCoverage.png)
+![turnOnCoverage](./images/turnOnCoverage.png)
 
 "커버리지 데이터 수집" 상자가 선택되어 있는지 확인하고, '닫기'를 누르고 테스트 타켓을 실행한다! 잘된다면 우리는 테스트를 통과할 것이다.
 
@@ -93,11 +93,11 @@ class CodeCoverageTests: XCTestCase {
 
 Xcode 왼쪽 분할 창에 있는 Report Navigator를 열고 빌드 테스트를 선택한다. 그런 다음 바에 "Coverage"를 선택한다.
 
-![image](./images/testCoveragePanel.png)
+![testCoveragePanel](./images/testCoveragePanel.png)
 
 이것은 클래스와 함수의 목록을 표시하고 각 테스트 범위 수준을 나타낸다. checkWord 함수에 마우스를 올리면, 당신은 우리의 테스트가 클래스의 28%를 다루는 것을 볼 수 있다. 인정할 수 없다! 우리는 이 문제를 개선하기 위해 실행하고 있는 코드 경로와 그렇지 않은 경로를 알 필요가 있다. 함수 이름을 더블 클릭하고, Xcode는 코드와 함께 코드 커버리지 통계를 열 것이다.
 
-![image](./images/firstCoverageResults.png)
+![firstCoverageResults](./images/firstCoverageResults.png)
 
 흰색 영역은 포함되고 실행된 코드를 나타낸다. 회색 영역은 실행되지 않은 코드를 보여준다. 이것은 우리가 확인하기 위해 더 많은 테스트를 추가해야 할 영역이다. 우측의 숫자는 코드 블록이 실행된 횟수를 나타낸다.
 
@@ -125,7 +125,7 @@ func testLongInvalidAnagramWithEqualLengths() {
 
 이 테스트들은 완전한 코드 커버리지를 제공하기에 충분하다. 다시 단위 테스트를 실행하고 최신 테스트 보고서에서 코드 커버리지 탭으로 돌아가자.
 
-![image](./images/finalCoverageResults.png)
+![finalCoverageResults](./images/finalCoverageResults.png)
 
 우리는 해냈다! 코드 커버리지 100%다. 이제 전체 파일이 흰색으로 변했고 모든 코드 경로에서 적어도 한 번은 실행되었음을 나타낸다.
 
