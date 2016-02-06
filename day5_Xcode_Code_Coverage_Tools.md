@@ -70,7 +70,7 @@ func checkWord(word: String, isAnagramOfWord: String) -> Bool {
 
 이것은 비교적 간단한 기능이다, 그래서 우리는 아무 문제 없이 100%의 코드 커버리지를 얻을 수 있어야 한다.
 
-당신의 알고리즘을 추가한 후, 그것을 테스트할 시간이다! 프로젝트를 만들 때 생성된 기본 XCTestCase를 연다. “1”이 “1”의 아나그램인지 확인하는 간단한 테스트를 추가한다. 당신의 테스트 클래스는 다음과 같이 보일 것이다.
+당신의 알고리즘을 추가한 후, 그것을 테스트할 시간이다! 프로젝트를 만들 때 생성된 기본 XCTestCase를 연다. "1"이 "1"의 아나그램인지 확인하는 간단한 테스트를 추가한다. 당신의 테스트 클래스는 다음과 같이 보일 것이다.
 
 ```swift
 class CodeCoverageTests: XCTestCase {
@@ -85,13 +85,13 @@ class CodeCoverageTests: XCTestCase {
 
 ![image](./images/turnOnCoverage.png)
 
-“커버리지 데이터 수집” 상자가 선택되어 있는지 확인하고, ‘닫기’를 누르고 테스트 타켓을 실행한다! 잘된다면 우리는 테스트를 통과할 것이다.
+"커버리지 데이터 수집" 상자가 선택되어 있는지 확인하고, '닫기'를 누르고 테스트 타켓을 실행한다! 잘된다면 우리는 테스트를 통과할 것이다.
 
 ### The Coverage Tab
 
 일단 테스트에 통과하면, 당신은 checkWord:isAnagramOfWord 함수가 적어도 하나의 경로에서 맞는다는 사실을 안다. 당신이 모르는 것은 테스트 되지 않은 것들이 얼마나 더 많은지다. 이것이 코드 커버리지 도구가 도움되는 곳이다. 커버리지 탭을 열면 프로그램에서 대상, 파일, 그리고 함수별로 다른 수준의 코드 커버리지를 볼 수 있다.
 
-Xcode 왼쪽 분할 창에 있는 Report Navigator를 열고 빌드 테스트를 선택한다. 그런 다음 바에 “Coverage”를 선택한다.
+Xcode 왼쪽 분할 창에 있는 Report Navigator를 열고 빌드 테스트를 선택한다. 그런 다음 바에 "Coverage"를 선택한다.
 
 ![image](./images/testCoveragePanel.png)
 
