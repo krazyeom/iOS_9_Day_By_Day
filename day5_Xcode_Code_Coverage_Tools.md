@@ -6,13 +6,13 @@
 
 ### Code Coverage in Xcode
 
-과거에는, Xcode에서 프로젝트에 대한 코드 커버리지 보고서를 만들기 원한다면 몇 가지 옵션이 있었다. 그러나 꽤 복잡하고 수동 설정이 많이 필요하다. 다행히, iOS 9에서 애플은 Xcode 자체에 직접 코드 커버리지 도구를 통합했다. 도구들은 LLVM과 단단히 통합되었고 표현 식을 호출할 때마다 계산된다.
+과거에는, Xcode에서 프로젝트에 대한 코드 커버리지 보고서를 만들기 원한다면 [몇 가지](https://developer.apple.com/library/ios/qa/qa1514/_index.html) [옵션](http://www.cocoanetics.com/2013/10/xcode-coverage/)이 있었다. 그러나 꽤 복잡하고 수동 설정이 많이 필요하다. 다행히, iOS 9에서 애플은 Xcode 자체에 직접 코드 커버리지 도구를 통합했다. 도구들은 LLVM과 단단히 통합되었고 표현 식을 호출할 때마다 계산된다.
 
 ### Using the Code Coverage Tools
 
-이제 우리는 새로운 코드 커버리지 도구를 사용하는 방법과 기존의 테스트 모음을 개선하는 방법을 위한 간단한 예제를 만들 것이다. 완성된 코드는 Github에서 볼 수 있고, 그래서 함께 따라 할 수 있다.
+이제 우리는 새로운 코드 커버리지 도구를 사용하는 방법과 기존의 테스트 모음을 개선하는 방법을 위한 간단한 예제를 만들 것이다. 완성된 코드는 [Github](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/05-CodeCoverage)에서 볼 수 있고, 그래서 함께 따라 할 수 있다.
 
-첫 번째 할 일은 새로운 프로젝트를 만드는 것이다. 단위 테스트 사용 옵션을 선택했는지 확인하라. 이것은 필요한 설정과 함께 기본 프로젝트를 생성한다. 이제 우리는 테스트할 뭔가가 필요하다. 이것은 분명히 당신이 원하는 무엇이든 될 수 있지만, 나는 빈 스위프트 파일을 추가하고 문자열이 서로의 아나그램 여부를 확인하는 전역 함수를 작성했다. 이것을 전역함수로 갖는 것은 아마 최고의 디자인은 아니지만, 지금은 그렇게 할 것이다!
+첫 번째 할 일은 새로운 프로젝트를 만드는 것이다. 단위 테스트 사용 옵션을 선택했는지 확인하라. 이것은 필요한 설정과 함께 기본 프로젝트를 생성한다. 이제 우리는 테스트할 뭔가가 필요하다. 이것은 분명히 당신이 원하는 무엇이든 될 수 있지만, 나는 빈 스위프트 파일을 추가하고 문자열이 서로의 [아나그램](https://en.wikipedia.org/wiki/Anagram) 여부를 확인하는 전역 함수를 작성했다. 이것을 전역함수로 갖는 것은 아마 최고의 디자인은 아니지만, 지금은 그렇게 할 것이다!
 
 ```swift
 func checkWord(word: String, isAnagramOfWord: String) -> Bool {
@@ -133,4 +133,4 @@ func testLongInvalidAnagramWithEqualLengths() {
 
 ### Further Reading
 
-Xcode 7의 코드 커버리지 도구에 대한 더 자세한 내용은 WWDC 세션 410, Continuous Integration and Code Coverage in Xcode를 볼 것을 권장한다.
+Xcode 7의 코드 커버리지 도구에 대한 더 자세한 내용은 WWDC 세션 410, [Continuous Integration and Code Coverage in Xcode](https://developer.apple.com/videos/wwdc/2015/?id=410)를 볼 것을 권장한다.
