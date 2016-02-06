@@ -4,7 +4,7 @@ iOS 9에서 큰 변화 중 하나는 멀티태스킹이다. 멀티태스킹은 �
 
 ## Slide Over View
 
-![slideOver](./images/slideOver.png)
+![slideOver](./images/slideover.png)
 
 화면의 오른쪽 끝에서 왼쪽으로 쓸어넘기기를 하면 앱의 목록을 보여주는 슬라이드 오버 뷰가 나타나고 이 좁은 창에 보일 앱을 선택할 수 있다. 이 좁은 창은 실행 중인 앱 위에 나타나며, 창 왼쪽의 입력은 불가능한 상태가 된다.
 
