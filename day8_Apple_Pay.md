@@ -1,4 +1,4 @@
-# DAY 8 :: Apple Pay
+# Day 8 :: Apple Pay
 
 Apple Pay는 iOS 8에서 소개되었다. 앱 내에 실제 상품과 서비스를 위해 쉽고, 보안 적이고, 비공개 방식으로 지불한다. 유저가 거래를 인증하기 위해 지문만 요구하여 무언가를 간단하게 지불할 수 있다.
 
@@ -20,7 +20,7 @@ WWDC 702 세션에서, [앱 내의 Apple Pay](https://developer.apple.com/videos
 
 앱 내부에 간단한 상점을 설정하고, 어떻게 Apple Pay를 사용하여 거래가 진행되는지를 보여주려고 한다. 앱은 한 개의 상품을 가지지만, Apple Pay로 완전히 통합되어 어떻게 Apple Pay를 설정하고 시작하는지를 보여주기 위해 허용할 것이다.
 
-![What we are going to be building.](images/result.png)
+![What we are going to be building.](./images/result-2.png)
 
 이것을 우리가 만들 것이다. 보다시피 유저가 지금 구매 버튼을 탭 할 때 Apple Pay 시트가 나타난다.
 
@@ -28,13 +28,13 @@ WWDC 702 세션에서, [앱 내의 Apple Pay](https://developer.apple.com/videos
 
 코드를 작성하기 전에, Apple Pay로 작업하기 위해 앱 기능(capability)를 설정해야 한다. 빈 새로운 프로젝트를 만들 때, 프로젝트 세팅을 열고, 기능 탭을 엽니다.
 
-![Enabling Apple Pay.](images/enablingApplePay1.png)
+![Enabling Apple Pay.](./images/enablingApplePay1.png)
 
 기능 부분에서 Apple Pay를 목록에서 볼 수 있다. 스위치 상태를 변경하고, 프로비져닝 사용할 개발 팀을 선택 요청받습니다. 바라건대, Xcode는 여러분과 Apple Pay가 가능하도록 모든 설정을 할 것이다.
 
 우리는 Merchant ID를 추가하고 나서, Apple은 어떻게 결제가 정확하게 암호화하는 방법을 압니다. Merchant ID 영역에서 추가 버튼을 클릭하고, 여러분의 고유 Merchant ID를 입력한다. 예를 들어, 우리는 `merchant.com.shinobistore.appleplay`를 선택했다.
 
-![Apple Pay is now enabled.](images/enablingApplePay2.png)
+![Apple Pay is now enabled.](./images/enablingApplePay2.png)
 
 되었다. Apple Pay가 활성화되어 있는지 볼 수 있고 앱에서 사용가능하다.
 
@@ -42,7 +42,7 @@ WWDC 702 세션에서, [앱 내의 Apple Pay](https://developer.apple.com/videos
 
 이제 우리는 정확한 프로비져닝과 권한 설정이 있으며, 사용자가 우리의 제품을 지불할 수 있도록 UI 구축 시작할 준비 되었다. storyboard를 열고 일부 자리 UI는 제품을 판매할 수 있음을 표시한다.
 
-![Setting up the view](images/viewSetup.png)
+![Setting up the view](./images/viewSetup.png)
 
 우리가 만든 UI는 제목, 가격 그리고 설명이 있는 간단한 이미지이다. 시연에서 중요하지 않습니다. 우리는 view에 버튼을 추가해야 하므로, view 아래에 추가한다. 추가할 버튼은 `PKPaymentButton`이다. 애플이 iOS 8.3에서 소개했다. 유저들이 Apple Pay를 사용할 때 Apple Pay 버튼은 지역화되고 표준 시각 표시로 유저에게 제공된다. 이러한 이유로 애플은 이 버튼을 사용하여 Apple Pay 화면 실행하는 것을 강력하게 추천한다.
 
@@ -73,7 +73,7 @@ override func viewDidLoad() {
 
 이는 우리가 필요한 전부이다. 이 코드는 따로 설명이 필요 없으며 옮겨보잔. 우리가 정말로 관심 있는 유일한 UI 요소는 버튼이다. 버튼이 탭 될 때 `buyNowButtonTapped:` 메소드에서 구매 프로세스를 시작한다.
 
-![The Purchase UI once it has been set up.](images/uiSetup.png)
+![The Purchase UI once it has been set up.](./images/uiSetup.png)
 
 UI가 설정되면, 구매를 진행해야 한다. 먼저, Apple Pay 거래하는 데 필요한 다양한 클래스를 완전히 이해하는 것이 좋다.
 
@@ -160,7 +160,7 @@ presentViewController(authorizationViewController, animated: true, completion: n
 
 마지막으로, 유저에게 Apple Pay 시트를 나타내기 위해 남기는 모든 것은 request로부터 `PKPaymentAuthorizationViewController`를 만들며, 델리게이트를 설정하고, 유저에게 나타난다.
 
-![The Apple Pay sheet that is presented to the user when they tap the Pay button](images/paySheet.png)
+![The Apple Pay sheet that is presented to the user when they tap the Pay button](./images/paySheet.png)
 
 `PKPaymentAuthorizationViewController`에서 델리게이트 메소드를 구현했는지 확인해야 한다. 메소드를 구현해야하며 결제가 되었는지 안되었는지, 그리고 결제가 인증되고 완료되었을 때 콜백을 받았는지를 안다.
 
@@ -189,7 +189,7 @@ func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizat
 
 그게 전부이다. 현실 세계에서 결제 공급자에게 결제 토큰을 전달해야 한다. Stripe 같이, 그러나 이는 이 튜토리얼 범위를 넘어간다. 우리는 간단한 view controller에 영수증을 보여주도록 추가했으며, 이 경우에는 결제 토큰의 `transactionIdentifier`를 보여준다. 이것은 문자열로 전역 고유 식별자를 설명하며 거래를 위함이다. 이 거래는 영수증 목적을 위해 사용될 수 있다.
 
-![The confirmation view controller](images/confirmation.png)
+![The confirmation view controller](./images/confirmation.png)
 
 ## 더 읽을거리
 
