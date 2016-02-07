@@ -17,7 +17,7 @@ class Ellipse: UIView {
 }
 ```
 
-custom View를 가지고 있다면 custom 충돌 경계 path를 같은 형태로 만들 수 있다.
+커스텀 뷰를 가지고 있다면 커스텀 충돌 경계 패스를 같은 형태로 만들 수 있다.
 
 ## UIFieldBehavior
 
@@ -38,7 +38,7 @@ iOS 9 이전에는 중력(gravity) behaviour만이 field behaviour 타입으로 
 
 ![result](./images/result.png)
 
-UIKit Dynamics를 사용하기 위해서는 우선 UIDynamicAnimator를 설정해야 한다. Class에서 `viewDidLoad` 메소드에서 설정 후 계속 참조하여 쓰자.
+UIKit Dynamics를 사용하기 위해서는 우선 UIDynamicAnimator를 설정해야 한다. 클래스에서 `viewDidLoad` 메소드에서 설정 후 계속 참조하여 쓰자.
 
 ```swift
 // Set up a UIDynamicAnimator on the view.
@@ -138,7 +138,7 @@ portrait orientation일 때만 작동한다는 것을 기억하자. 앱에서 �
 animator.debugEnabled = true // Private API. bridging header 참고.
 ```
 
-이제 앱을 실행시켜보자. UIFieldBehavior에의해  적용된 힘들을 볼 수 있게 되었다.
+이제 앱을 실행시켜보자. UIFieldBehavior에의해 적용된 힘들을 볼 수 있게 되었다.
 
 ![debugMode](./images/debugMode.jpg)
 
