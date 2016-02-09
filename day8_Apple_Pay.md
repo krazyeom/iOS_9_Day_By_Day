@@ -197,4 +197,4 @@ Apple Pay에 더 많은 정보로 WWDC 702 세션인 [Apple Pay Within Apps](htt
 
 애플 개발자 웹사이트에도 [guide to Apple Pay](https://developer.apple.com/apple-pay/)가 있으며, 유용한 정보를 많이 포함하며 Apple Pay 통합하기 전에 잘 알고 있어야 한다.
 
-잊지마라. 우리가 이 글에서 만들고 설명된 프로젝트를 시도할 경우, [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/08-Apple-Pay)를 통해 찾을 수 있다.
+잊지마라. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/08-Apple-Pay)에 있으니 잊지 말기 바란다.

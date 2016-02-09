@@ -1,10 +1,10 @@
-# 12. GameplayKit - Behaviors & Goals
+# Day 12 :: GameplayKit – Behaviors & Goals
 
 11장에서 우리는 지정된 장애물들을 피하며 씬(Scene)의 두 지점 사이의 길을 계산하기 위해 GameplayKit의 pathfinding API를 어떻게 사용할 수 있는지 살펴보았다.
 
 이 포스트는 우리는 씬을 통과해 노드를 움직이는 다른 접근 방식을 취할 것이다. Gameplay kit은 행동(Behaviours)와 목표(Goals)이라는 개념을 소개했다. 그것을 우리에게 제약(constraints)과 원하는 성취(achievements)를 기반으로 씬의 노드들 배치하는 방법을 제공한다. 더 자세히 살펴보기 전에 이것이 어떻게 작동하는지 예제를 살펴보자.
 
-[비디오 링크](./images/Day12_Missile.mov)
+[비디오 링크](images/Day12_Missile.mov)
 
 우리가 곧 만들어 볼 위의 예제에서는 우리는 사용자를 나타내는 노란색 상자를 볼 수 있다. 이 상자는 씬 주위에 움직이는 사용자의 손가락으로 조종된다. 매우 기초적인 것이다! 흥미로운 부분은 플레이어를 탐색(Seek)하는 미사일이다. 이 미사일은 언제나 플레이어 노드의 중심 포인트에 도달하려고 할 것이다.
 
@@ -12,11 +12,11 @@
 
 이제 우리는 행동과 목표의 일에 대해 조금 알고 있다. 이 데모 앱을 어떻게 만들지 살펴보자.
 
-## Behavior and Goal 예제 만들기
+## Behavior와 Goal 예제 만들기
 
 이 예제를 어떻게 만드는지 같이 살펴보자.
 
-![기본 SpriteKit 템플릿 설정하기](images/Day12_setup.png)
+![Setting up the default SpriteKit template](images/Day12_setup.png)
 
 기본 SpriteKit 템플릿을 설정하고 GameScene.swift 파일을 연다.
 
@@ -243,9 +243,9 @@ override func update(currentTime: NSTimeInterval) {
 
 그리고 그게 전부이다! 이제 게임을 실행하면 플레이어를 향해 질주 미사일을 볼 수 있다. 불행하게도 우리는 충돌 감지와 폭발을 추가하지 않았다. 추가 연습 문제로 폭발 컴포넌트를 직접 만들어 보는 것도 좋다!
 
-## Further Reading
+## 더 읽을거리
 
-이 포스트에서 다룬 새로운 GameplayKit에 대한 더 많은 정보는 WWDC 세션 608,[Introducing GameplayKit](https://developer.apple.com/videos/wwdc/2015/?id=608)을 찾아봐라. 잊지 말자. 만약 이 포스트에서 만들고 설명한 프로젝트를 한 번 시도해 보려면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/12-GameplayKit-Behaviors)에서 찾을 수 있다.
+이 포스트에서 다룬 새로운 GameplayKit에 대한 더 많은 정보는 WWDC 세션 608,[Introducing GameplayKit](https://developer.apple.com/videos/wwdc/2015/?id=608)을 찾아봐라. 잊지 말자. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/12-GameplayKit-Behaviors)에 있으니 잊지 말기 바란다.
 
 만약 지난 두 개의 GameplayKit 포스트가 재미있었다면 이번 포스트에서 논의한 행동과 목표 API를 사용해 pathfinding을 통합하는 예제를 만들어 보는 것도 좋다.
 

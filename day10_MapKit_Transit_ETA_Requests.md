@@ -29,13 +29,13 @@ Detail Callout Accessory View는 iOS 9에 새로 등장했다. 기존의 콜아�
 
 새 API들이 어떻게 활용될 수 있는지 파악하고 새로 나온 도착 예상시간 요청을 써보기 위해 다음과 같은 앱을 만들 것이다. 이 앱은 사용자가 찍은 위치로부터 런던의 다양한 랜드마크들까지의 경로를 보여준다.
 
-![result](./images/MapKit-1.png)
+![What we are going to build.](images/MapKit-1.png)
 
 첫 번째 할일은 스토리보드에서 MKMapView가 화면의 절반을 채우고, UITableView가 나머지 절반을 채우도록 오토레이아웃을 설정하는 일이다.
 
 다 되면, 프로토타입 테이블 뷰 셀을 추가하여 필요한 요소들을 추가해준다. UI를 설정하는 방법까지는 이 장에서 자세하게 다루지 않겠다. 해당 UIViewController가 해당 테이블뷰의 UITableViewDataSource와 맵뷰의 MKMapViewDelegate가 되도록 하는 것을 잊지 마라. UI를 다 설정하고 나면 스토리보드에 아래와 같은 화면이 완성되어 있을 것이다.
 
-![storyboard](./images/MapKit-2.png)
+![The storyboard setup.](images/MapKit-2.png)
 
 또한 커스텀 테이블 뷰 셀 클래스를 만들어야 할 것이다. 지금으로써는 셀 안에 있는 레이블(label)을 가지고 있는 간단한 클래스일 것이다.
 
@@ -120,7 +120,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
 
 앱을 실행시키면 지도에 위치들이 표시되고 테이블뷰에 위치들의 이름이 나타나야 한다.
 
-![step1](./images/MapKit-3.png)
+![The app showing the destinations on the map](images/MapKit-3.png)
 
 훌륭하지만 아직 출발점이 없으므로 도착지까지의 경로를 계산할 수 없다! 유저의 실시간 위치 정보를 사용할 수도 있지만, 이상적으로 우린 현실적인 거리상의 경로를 계산하고 싶다. 그래서 그 대신 유저가 지도에 탭하는 위치를 출발 지점으로 사용할 수 있다.
 
@@ -200,7 +200,7 @@ directions.calculateETAWithCompletionHandler { response, error -> Void in
 
 이제 앱을 실행시키면 아래와 같은 결과를 볼 수 있을 것이다.
 
-![result](./images/MapKit-1.png)
+![The final result.](images/MapKit-1.png)
 
 지도를 탭할 때마다 테이블뷰의 셀들이 새로운 도착 예상 정보를 표시할 것이다.
 
@@ -228,6 +228,6 @@ func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> 
 
 `pinTintColor`는 iOS 9에서 새로 추가된 프로퍼티인데, 어노테이션(annotation)의 핀 윗 부분 색을 지정해줄 수 있다. 위의 사진에서 보다시피 `mapView:viewForAnnotation`으로 넘어온 위치가 유저가 찍은 위치(userAnnotation)이면 빨간색으로 만들었고 그 외엔 파란색으로 지정해주었다. 이러면 유저가 찍은 좌표와 도착지점들을 지도에서 구분할 수 있게 된다.
 
-### Further Reading
+## 더 읽을거리
 
-이 포스트에 작성된 MapKit에 대한 정보를 더 얻고 싶다면 WWDC 세션 [What's New in MapKit](https://developer.apple.com/videos/wwdc/2015/?id=206)을 참고하기 바란다.
+이 포스트에 작성된 MapKit에 대한 정보를 더 얻고 싶다면 WWDC 세션 [What's New in MapKit](https://developer.apple.com/videos/wwdc/2015/?id=206)을 참고하기 바란다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/10-MapKit-Transit)에 있으니 잊지 말기 바란다.

@@ -11,7 +11,7 @@
 
 아래 스크린샷은 본 스토리보드 모습이다.
 
-![oldStoryboard](./images/oldStoryboard.png)
+![The storyboard before refactoring](./images/oldStoryboard.png)
 
 스크린 샷을 보면 알 수 있듯이, 우리는 탭바 컨트롤러를 Initial View  Controller(첫화면 뷰 컨트롤러) 로 사용할 것이다. 이 탭바 컨트러러는 각기 다른 루트 뷰 컨트롤러를 가지는 3개의 내비게이션 컨트롤러를 가진다. 첫 번째는 연락처 리스트의 테이블 컨트롤러이고 두 번째는 즐겨찾기 연락처의 또 다른 테이블 컨트롤러이다. 이들 둘 다 같은 상세 연락처 뷰 컨트롤러로 링크된다. 세번째 네비케이션 컨트롤러는 계정 상세 정보, feedback 화면, about 화면을 포함한 애플리케이션 전반적인 정보들을 가진다.
 
@@ -19,19 +19,19 @@
 
 우리는 가장 쉬운 케이스부터 시작할 것이다. Main.stroyboard(이하: 메인 스토리보드) 오른쪽 편으로 애플리케이션에 대해 더 많은 정보를 제공하는 뷰 컨트롤러들을 볼 수 있을 것이다. 이 뷰 컨트롤러 들은 독립적이고 다른 컨트럴로들이 링크된 어떤 공통 뷰에도 링크 되어 있지 않다.  
 
-![settingsScreens](./images/settingsScreens.png)
+![The first region that we want to refactor](./images/settingsScreens.png)
 
 이제 그냥 이 뷰 컨트롤러들의 드래그하여 하이라이트 하게 하여 선택만 하면 된다. 선택됐다면, Xcode menu bar의 "Editor" 를 선택후 "Refactor to Storyboard" 를 선택해주자.
 
-![refactorMenu](./images/refactorMenu.png)
+![Xcode's new 'refactor to storyboard' menu item](./images/refactorMenu.png)
 
 그 스토리보드에 More.storyboard 라고 이름 지어주고 Save 눌러주자. 그럼 More.storyboard 파일이 애플리케이션에 추가되고 열릴 것이다.
 
-![moreStoryboard](./images/moreStoryboard.png)
+![Xcode's new 'refactor to storyboard' menu item](./images/moreStoryboard.png)
 
 이제 스토리보드가 만들어져진 걸 볼 수 있다. 이제 Main.storyboard로 돌아가게 되면 탭바 컨트롤러들중 하나가 Storyboard Reference(스토리보드 참조)로 바뀐 것을 볼 수 있다.
 
-![mainReference](./images/mainReference.png)
+![Xcode's new 'refactor to storyboard' menu item](./images/mainReference.png)
 
 우리는 UI의 한 파트틀 전체를 별도의 스토리를 보드로 빼낼 수 있게 됐다. 이는 뷰간 연관 관계를 분리할 수 있게 해 줄 뿐 아니라 앱의 다른 파트에서 스토리보드 재사용이 가능케 해준다. 우리의 경우는 특별히 유용한 경우가 아니긴 하지만 이는 다른 많은 케이스에 적용할 수 있는 가치가 있는 것이 될 것이다.
 
@@ -45,7 +45,7 @@
 
 이제 Main.storyboard 로 돌아가서 contacts 내비게이션 컨트롤러와 테이블 뷰 컨트롤러들을 선택하고 새 스토리보드로 재구성해주자. 그리고 favorites 뷰 컨트롤러에게도 똑같이 해주자. 결과는 다음과 같아질 것이다.
 
-![result](./images/result-1.png)
+![How main.storyboard should look after refactoring](./images/result-1.png)
 
 우리는 이제 하나의 Main.storyboard를 5개의 스토리보드 객체들로 나누게 되었다.
 
@@ -66,16 +66,16 @@
 
 "More" 스토리보드를 선택하고 "Referenced ID"란 에 "accountViewController" 라고 입력하자. 이는 more 스토리보드의 initial 뷰컨트롤러 대신에 account details 뷰컨트롤러를 참조하게 해준다.
 
-![accountViewController](./images/accountViewController.png)
+![Setting up the account view controller reference.](./images/accountViewController.png)
 
 account 뷰 컨트롤러 에 대한 스토리보드 레퍼런스가 나타나면, account button을 선택한 후 Ctrl + 클릭후 새로 만들어진 스토리보드 레퍼런스에 드래그 하여 새로운 세그웨이를 만들자.
 
-![accountSegue](./images/accountSegue.png)
+![The final contacts storyboard.](./images/accountSegue.png)
 
 마지막 단계는 account 뷰컨트롤러에게 방금 명명한 identifier를 주자. 그럼 More.storyboard를 열고 account 뷰컨트롤러를 선택한 후 identity inspector를 열고 Storyboard ID를 "accountViewController로 설정한다. 이제 앱을 실행하고 Account 버튼을 탭 하면 account 뷰컨트롤러가 contacts navigation 컨트롤러 스텍으로 푸쉬되는 것을 확인할 수 있다.
 
 우리가 봤듯이, 스토리보드 참조를 추가(refactoring 툴이나 직접 interface builder에서 추가)는 간단하고 쉽고 효과적이다. 이는 스토리보드들로 재사용 가능한 컴포넌트들을 생성할 수 있고 UI를 모뮬화시킬 수 있도록 도와 준다. 전과 같이 이 튜토리얼의 결과물은 [깃허브에서 찾을 수 있다](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/03-Storyboard-References).
 
-### 더 읽을 거리
+## 더 읽을거리
 
-Xcode 7 스토리보드 참조에 대한 좀 더 많은 정보로는 WWDC 2015의 세션, [What’s New in Storyboards](https://developer.apple.com/videos/play/wwdc2015-215/) 를 보는 것을 추천한다. 처음 20분 정도가 새기능 스토리보드 참조에 대해서 다룬다.
+Xcode 7 스토리보드 참조에 대한 좀 더 많은 정보로는 WWDC 2015의 세션, [What’s New in Storyboards](https://developer.apple.com/videos/play/wwdc2015-215/) 를 보는 것을 추천한다. 처음 20분 정도가 새기능 스토리보드 참조에 대해서 다룬다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/03-Storyboard-References)에 있으니 잊지 말기 바란다.

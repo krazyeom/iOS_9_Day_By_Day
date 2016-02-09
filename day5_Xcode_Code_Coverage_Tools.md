@@ -4,11 +4,11 @@
 
 목표로 해야 하는 이상적인 코드 커버리지 비율은 없다. 이것은 프로젝트에 따라 크게 달라진다. 예를 들어, 테스트할 수 없는 시각적인 요소를 많이 가진 프로젝트면 데이터 처리 프레임워크를 만드는 경우에 비해 훨씬 낮을 것이다.
 
-### Code Coverage in Xcode
+### Xcode에서 코드 커버리지
 
 과거에는, Xcode에서 프로젝트에 대한 코드 커버리지 보고서를 만들기 원한다면 [몇 가지](https://developer.apple.com/library/ios/qa/qa1514/_index.html) [옵션](http://www.cocoanetics.com/2013/10/xcode-coverage/)이 있었다. 그러나 꽤 복잡하고 수동 설정이 많이 필요하다. 다행히, iOS 9에서 애플은 Xcode 자체에 직접 코드 커버리지 도구를 통합했다. 도구들은 LLVM과 단단히 통합되었고 표현 식을 호출할 때마다 계산된다.
 
-### Using the Code Coverage Tools
+### 코드 커버리지 툴 사용하기
 
 이제 우리는 새로운 코드 커버리지 도구를 사용하는 방법과 기존의 테스트 모음을 개선하는 방법을 위한 간단한 예제를 만들 것이다. 완성된 코드는 [Github](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/05-CodeCoverage)에서 볼 수 있고, 그래서 함께 따라 할 수 있다.
 
@@ -83,25 +83,25 @@ class CodeCoverageTests: XCTestCase {
 
 테스트를 실행하기 전에, 우리는 코드 커버리지가 켜져 있는지 확인해야 한다! 글을 쓰는 시점에서, 이것은 기본적으로 꺼져있다, 그래서 그것을 켜도록 테스트 스키마를 편집해야 한다.
 
-![turnOnCoverage](./images/turnOnCoverage.png)
+![Where to turn on code coverage in the scheme editor](images/turnOnCoverage.png)
 
 "커버리지 데이터 수집" 상자가 선택되어 있는지 확인하고, '닫기'를 누르고 테스트 타켓을 실행한다! 잘된다면 우리는 테스트를 통과할 것이다.
 
-### The Coverage Tab
+### 커버리지 탭
 
 일단 테스트에 통과하면, 당신은 checkWord:isAnagramOfWord 함수가 적어도 하나의 경로에서 맞는다는 사실을 안다. 당신이 모르는 것은 테스트 되지 않은 것들이 얼마나 더 많은지다. 이것이 코드 커버리지 도구가 도움되는 곳이다. 커버리지 탭을 열면 프로그램에서 대상, 파일, 그리고 함수별로 다른 수준의 코드 커버리지를 볼 수 있다.
 
 Xcode 왼쪽 분할 창에 있는 Report Navigator를 열고 빌드 테스트를 선택한다. 그런 다음 바에 "Coverage"를 선택한다.
 
-![testCoveragePanel](./images/testCoveragePanel.png)
+![Code Coverage Panel](images/testCoveragePanel.png)
 
 이것은 클래스와 함수의 목록을 표시하고 각 테스트 범위 수준을 나타낸다. checkWord 함수에 마우스를 올리면, 당신은 우리의 테스트가 클래스의 28%를 다루는 것을 볼 수 있다. 인정할 수 없다! 우리는 이 문제를 개선하기 위해 실행하고 있는 코드 경로와 그렇지 않은 경로를 알 필요가 있다. 함수 이름을 더블 클릭하고, Xcode는 코드와 함께 코드 커버리지 통계를 열 것이다.
 
-![firstCoverageResults](./images/firstCoverageResults.png)
+![Code Coverage Panel](images/firstCoverageResults.png)
 
 흰색 영역은 포함되고 실행된 코드를 나타낸다. 회색 영역은 실행되지 않은 코드를 보여준다. 이것은 우리가 확인하기 위해 더 많은 테스트를 추가해야 할 영역이다. 우측의 숫자는 코드 블록이 실행된 횟수를 나타낸다.
 
-### Improving Coverage
+### 커버리지 개선하기
 
 분명히, 우리는 클래스의 커버리지를 28% 이상으로 목표해야 한다. UI도 없고 단위 테스트를 위한 완벽한 후보처럼 보인다. 그렇다면 좀 더 테스트를 추가하자! 이상적으로, 우리는 함수의 각 반환문에 도달할 수 있다. 이것은 우리에게 전체 범위를 제공할 것이다. 테스트 클래스에 테스트들을 추가한다.
 
@@ -125,12 +125,12 @@ func testLongInvalidAnagramWithEqualLengths() {
 
 이 테스트들은 완전한 코드 커버리지를 제공하기에 충분하다. 다시 단위 테스트를 실행하고 최신 테스트 보고서에서 코드 커버리지 탭으로 돌아가자.
 
-![finalCoverageResults](./images/finalCoverageResults.png)
+![Code Coverage Panel](images/finalCoverageResults.png)
 
 우리는 해냈다! 코드 커버리지 100%다. 이제 전체 파일이 흰색으로 변했고 모든 코드 경로에서 적어도 한 번은 실행되었음을 나타낸다.
 
 코드 커버리지를 사용하는 것은 실제로 코드의 모든 기능을 테스트하지 않고 많은 단위 테스트를 정말로 가치 있는 테스트 모음으로 구축하는 데 도움이 되는 좋은 방법이다. Xcode 7은 이것을 쉽게 할 수 있도록 만들고, 나는 프로젝트에 코드 커버리지를 적용하는 것을 철저하게 권장한다. 기존에 테스트 모음이 있는 경우에도, 이것은 당신의 코드가 얼마나 잘 테스트할지 좋은 아이디어를 제공하는 데 도움이 될 것이다.
 
-### Further Reading
+## 더 읽을거리
 
-Xcode 7의 코드 커버리지 도구에 대한 더 자세한 내용은 WWDC 세션 410, [Continuous Integration and Code Coverage in Xcode](https://developer.apple.com/videos/wwdc/2015/?id=410)를 볼 것을 권장한다.
+Xcode 7의 코드 커버리지 도구에 대한 더 자세한 내용은 WWDC 세션 410, [Continuous Integration and Code Coverage in Xcode](https://developer.apple.com/videos/wwdc/2015/?id=410)를 볼 것을 권장한다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/05-XCode-Code-Coverage)에 있으니 잊지 말기 바란다.

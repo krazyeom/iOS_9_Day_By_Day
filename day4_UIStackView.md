@@ -6,17 +6,17 @@ iOS 9에서 Apple은 여러분의 애플리케이션에서 뷰를 수평 혹은 
 
 `UIStackView`는 여러분을 위해 이 모든 것을 해준다. 심지어는 뷰를 추가하고 숨기고 지울 때와 또한 `UIStackView` 스스로의 레이아웃 속성을 바꿀 때 사이의 상태를 부드럽게 애니메이션하기 위한 지원도 있다.
 
-### Using UIStackView
+### UIStackView 사용하기
 
 이제부터 우리는 `UIStackView`를 사용하는 방법의 예제를 구축할 것이다. 완성된 코드는 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/04-UIStackView)를 통해 제공되기 때문에 여러분은 따라 할 수 있다. 우리는 `UIStackView`가 어떻게 작동하는 지 간단한 데모를 구축할 것이고 이는 아래에 `UIStackView`의 정렬과 분포 속성을 제어하는 분할된 컨트롤(segmented controls)을 가진다.
 
-![result1](./images/4-1.png)
+![This is what we are going to build.](images/4-1.png)
 
 위의 그림은 우리가 구축할 것이다. 여러분이 볼 수 있듯이, 우리는 표시된 4명의 친구와 또한 아래를 따라 두 개의 분할된 컨트롤을 가지고 있다. 이 UI는 오토 레이아웃을 사용하고 주어진 어느 크기로 적용된다. 그러므로 이것을 만들 때 우리가 오직 4개의 레이아웃 위치 제약(contraints)만 추가해도 된다는 것이 여러분을 놀라게 할 것이다.
 
 이 뷰에서 모든 것은 `UIStackView`와 함께 배치된다. 전체적으로 우리는 4개의 `UIStackView`를 가지고 있다. 첫 번째 것은 오직 우리가 제약을 추가해야 할 필요가 있는 것이다. 이는 우리의 루트 뷰의 안에 스택 뷰를 배치하는 것이다.
 
-![constraintAdding](./images/4-2.png)
+![Adding constraints to keep the stack view on the page.](images/4-2.png)
 
 여러분이 뷰 컨트롤러에 수직 스택 뷰를 드래그 한 뒤, 인터페이스 빌더의 오른쪽 아래에 있는 `contraint pinning tool`을 열고 위의 스크린샷에서 명시된 제약을 추가하자. 이는 메인 스택 뷰를 뷰의 중심에 유지시키고 알맞은 크기로 만든다.
 
@@ -55,10 +55,11 @@ iOS 9에서 Apple은 여러분의 애플리케이션에서 뷰를 수평 혹은 
 여러분은 시각적인 감각의 한 조각을 위한 애니메이션 블록에서 각 함수의 감싸진 코드를 볼 수 있지만, 그것은 반드시 필요하진 않다. 그것은 만약 여러분이 애니메이션 코드를 지우면 즉시 변경될 것이다. 지금 남겨진 모든 것은 빌드하고 실행하는 것이다!
 
 distriution과 alignment의 다른 조합들과 함께 실행을 시도해보자. 이는 많은 디바이스에서 완벽하게 동작하는 인터페이스를 제작하기 위해 여러분을 도와줄 때 `UIStackView`가 얼마나 강력한지 보여준다.
-### Adding existing views to UIStackView
+### UIStackView에 기존 뷰 추가하기
 
 만약 여러분이 UIStackView 레이아웃을 사용하기 위해 변환하고 싶은 존재하는 UI를 가지고 있다면 간단하게 여러분의 뷰에 있는 제약을 지운뒤 그들을 선택하고 인터페이스 빌더 윈도우의 우측 아래에 있는 가장 왼쪽의 버튼을 하자. 이는 여러분의 뷰를 새로운 `UIStackView`로 바꾸고 빠르게 정렬해준다.
 
-![ibSupport](./images/4-3.png)
-이는 레이아웃을 기반으로 여러분의 존재하는 제약을 여러분을 위한 제약 레이아웃의 대부분을 관리할 수 있는 간단한 스택 뷰로 변환할 것이다.### Further Reading
-Xcode7에서 Storyboard Reference의 더 많은 정보를 위해서는 WWDC session 218, [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/play/wwdc2015-215/)을 보는 것을 추천한다. Jason Yao는 `UIStackView`의 기초를 비디오의 첫 15분에서 다뤘고 과거에서 여러분이 필요했던 것 보다 적은 제약으로 어떻게 인터페이스를 만들 수 있는지 보여주는 데모를 만들었다.
+![Quickly adding views to a StackView in Interface Builder](images/4-3.png)
+이는 레이아웃을 기반으로 여러분의 존재하는 제약을 여러분을 위한 제약 레이아웃의 대부분을 관리할 수 있는 간단한 스택 뷰로 변환할 것이다.## 더 읽을 거리
+
+Xcode7에서 Storyboard Reference의 더 많은 정보를 위해서는 WWDC session 218, [Mysteries of Auto Layout, Part 1](https://developer.apple.com/videos/play/wwdc2015-215/)을 보는 것을 추천한다. Jason Yao는 `UIStackView`의 기초를 비디오의 첫 15분에서 다뤘고 과거에서 여러분이 필요했던 것 보다 적은 제약으로 어떻게 인터페이스를 만들 수 있는지 보여주는 데모를 만들었다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/04-UIStackView)에 있으니 잊지 말기 바란다.

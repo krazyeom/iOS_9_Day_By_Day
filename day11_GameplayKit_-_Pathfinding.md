@@ -19,22 +19,22 @@ iOS 9의 발표에서 애플은 이것을 가지고 개발자를 돕고 시도�
 
 이 포스트는 특히 GameplayKit API 중 새로운 pathfinding 기능으로 보이지만, 나중의 포스트에서 다양한 다른 영역 일부를 살펴볼 것이다.
 
-### Building a Pathfinding Example
+### Pathfinding 예제 만들기
 
 간단한 SpriteKit 예제를 GameplayKit에서 가능한 새로운 pathfinding API의 데모용으로 지금 만들 것이다.
 
 처음으로 Xcode에서 SpriteKit 게임 프로젝트를 세트업 한다.
-![setup](./images/setup.png)
+![Setting up a SpriteKit Game](images/setup.png)
 
 우리가 만들기 원하는 게임을 위한 가장 기본적인 템플릿을 제공한다. 여기까지는 아무런 문제가 없다. 다음 스텝은 `GameScene.sks`을 열고 몇 가지 노드를 추가한다. 처음으로, 플레이가 미로를 통해 이동하는 것을 대변하는 하나의 노드를 추가한다.
 
-![player](./images/player.png)
+![Setting up the player](images/player.png)
 
 Xcode의 오른쪽 방향의 프로퍼티 인스펙트에서 노드의 이름으로 "player"로 설정한다. 이 노드에 접근하기 위해서 이 것을 사용할 것이다.
 
 이제는 플레이가 움직일 때 피할 수 있도록 하는 노드를 추가하는 것이 필요하다. 그렇지 않으면 이 길찾기 예제는 매우 간단한 것이다!
 
-![maze](./images/maze.png)
+![Setting up the player](images/maze.png)
 
 Xcode 씬(Scene) 편집기를 사용해서 씬으로 몇 개의 노드를 드래그 한다. 그리고 위의 이미지와 비슷한 것을 확인 할 수 있다. 여러분은 여러분의 미로를 간단하게 또는 더 복잡하게 만들수 있다. 가장 중요한 부분은 쌍의 특정 지점에 길을 만들 때 플레이가 피할 수 있도록 하는 적어도 몇 개의 노드가 있어야 한다. 이런 노드에 어떠한 특별한 프로퍼티 설정을 할 필요가 없다. 기본 쉐이프 노드처럼 그냥 남겨 두면 된다.
 
@@ -127,16 +127,16 @@ player?.runAction(sequence, completion: { () -> Void in
 
 이제, 씬의 어디든 탭을 하면, 플레이어 노드는 그 지점으로 씬의 모든 다른 노드를 피하면서 이동을 할 것이다! 만약 노드의 가운데를 탭 하거나 플레이어 노드가 움직일 수 없는 곳을 탭 하면 더는 플레이어 노드는 움직이지 않는다.
 
-### The Result
+### 결론
 
 아래의 비디오는 결과를 보여준다. 플레이어가 장애물 주변으로 이동을 하고 현재의 위치에서 씬의 반대편으로 길을 만드는 방법을 확인 할 수 있다.
 
-[비디오 파일](./images/PathfindingComplete.mov)
+[비디오 파일](images/PathfindingComplete.mov)
 
 이것은 새로운 pathfinding 기능의 매우 간략한 개요이다. GameplayKit의 나머지 기능으로 통합하는 방법을 배우는 것은 게임 개발을 할 때 열쇠이다. 그리고 그것은 잠재적으로 추후 포스트에서 다룰 내용이다.
 
-### Further Reading
+## 더 읽을거리
 
-이 포스트에서 다루었던 새로운 GameplayKit 기능에 더 많은 정보를 위해서 WWDC session 608, [Introducing GameplayKit](https://developer.apple.com/videos/wwdc/2015/?id=608)을 살펴봐라. 잊지 말아라, 만약에 이 포스트에서 만들고 설명했던 프로젝트를 한 번 시도해보기 원하면, [Github](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/11-GameplayKit-Pathfinding)를 통해서 찾을 수 있다.
+이 포스트에서 다루었던 새로운 GameplayKit 기능에 더 많은 정보를 위해서 WWDC session 608, [Introducing GameplayKit](https://developer.apple.com/videos/wwdc/2015/?id=608)을 살펴봐라. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/11-GameplayKit-Pathfinding)에 있으니 잊지 말기 바란다.
 
 만약 질문이나, 코멘트가 있다면 여러분의 피트백을 듣기를 원한다. [@christhegrant](http://twitter.com/christhegrant) 로 트윗을 보내거나, [@shinobicontrols](http://twitter.com/shinobicontrols) 를 팔로우해서 iOS9 Day-by-Day 시리즈의 최신의 뉴스나 업데이트 소식을 얻을 수 있다.

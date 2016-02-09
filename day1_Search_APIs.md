@@ -22,11 +22,11 @@ CoreSpotlight는 당신의 앱 안의 어떤 콘텐츠든 인덱스 할 수 있�
 
 NSUserActivity와 웹 마크업 API는 비교적 쉬운 데 비해 CoreSpotlight는 약간 더 복잡하다. 새로운 Core Spotlight API가 어떻게 동작하는지 알아보기 위해, 우리들의 친구 목록을 보여주고 이름을 선택했을 때 사진을 보여주는 간단한 앱을 만들어 보자. Github에서 코드를 찾아 그 곳에 만들어 둔 것과 함께 따라갈 수 있다.
 
-![friendApp-576x1024](./images/friendApp.png)
+![What we are going to build.](images/friendApp.png)
 
 이 앱은 간단한 친구의 이름을 보여주는 `FriendTableViewController`와 각 친구에 대해 상세히 보여주는 `FriendViewController`를 포함하는 간단한 스토리보드를 가진다.
 
-![storyboard](./images/storyboard.png)
+![The simple storyboard containing the FriendTableViewController and FriendViewController.](images/storyboard.png)
 
 우리들의 친구들에 대한 모든 정보는 `Datasource` 클래스에 저장되어 있다. 우리의 친구에 대한 정보를 저장하는 모델을 만들고 또한 Core Spotlight index에 친구를 저장하기 위한 로직이 포함된 곳이다.
 
@@ -88,7 +88,7 @@ NSUserActivity와 웹 마크업 API는 비교적 쉬운 데 비해 CoreSpotlight
 
 그리고 그뿐이다! 애플리케이션을 실행할 때 그 데이터는 저장될 것이다. 스팟라이트에서 검색할 때 당신의 친구가 나타날 것이다.
 
-![searchResults1-576x1024](./images/searchResults1.png)
+![searchResults1-576x1024](images/searchResults1.png)
 
 ### 사용자에 대한 응답
 
@@ -115,7 +115,7 @@ NSUserActivity와 웹 마크업 API는 비교적 쉬운 데 비해 CoreSpotlight
 
 `userInfo` 딕셔너리에서 정보를 가져온 후 애플리케이션의 네비게이션 컨트롤러를 찾고 루트(root)로 팝(pop)을(사용자의 눈에 띄지 않으니 애니메이션 없이) 하고 `FriendTableViewController`의 `showFriend` 함수를 호출한다. 이것이 어떻게 동작하는지 자세히 다루지는 않지만, 이건 주어진 ID로 데이터소스(datasource)에 있는 친구를 찾은 후 새로운 뷰 컨트롤러를 네비게이션 컨트롤러 스택에 넣는 것이다. 이것이 전부다. 사용자가 스팟라이트에서 친구를 누를 때 이제 볼 수 있을 것이다:
 
-![backToSearch-576x1024](./images/backToSearch.png)
+![How the app looks when one of the results is opened from Spotlight](images/backToSearch.png)
 
 당신도 볼 수 있듯, 이제 당신 앱의 왼쪽 위 모서리에 "검색으로 돌아기기" 옵션이 있다. 이것은 사용자가 바로 그들의 친구의 이름을 처음 선택한 검색화면으로 돌아갈 수 있도록 한다. 그들은 여전히 표준 백 버튼(back button)을 이용해서 앱을 돌아다닐 수도 있다.
 
@@ -127,6 +127,6 @@ NSUserActivity와 웹 마크업 API는 비교적 쉬운 데 비해 CoreSpotlight
 
 가능한 한 스팟라이트와 사파리로 당신의 콘텐츠를 많이 얻을 수 있다는 건 좋은 생각처럼 보일 수 있지만, 당신의 콘텐츠로 서치 인덱스에 스패밍(spamming)을 하기 전에 두 번 생각해라. iOS 에코시스템에서 좋은 시민이 되기 위해서는 당신 고객의 행복을 지키는 것뿐만 아니라는 것을 애플은 또한 알 수 있다. 그들은 타당함을 지키기 위해 많이 투자하고 있다. 참여 비율을 추적하고 스팸어(spammer)는 검색 결과의 맨 아래로 이동한다.
 
-## 추가 정보
+## 더 읽을거리
 
-새로운 Search API에 대한 추가적인 정보로 나는 WWDC session 709, [Introducing Search APIs](https://developer.apple.com/videos/wwdc/2015/?id=709)를 보는 걸 추천한다. 또한 [NSUserActivity Class Reference](https://developer.apple.com/library/prerelease/ios/documentation/Foundation/Reference/NSUserActivity_Class/) 뿐만 아니라 [CoreSpotlight에 대한 문서](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW3)를 읽는 것도 흥미로울 수 있다.
+새로운 Search API에 대한 추가적인 정보로 나는 WWDC session 709, [Introducing Search APIs](https://developer.apple.com/videos/wwdc/2015/?id=709)를 보는 걸 추천한다. 또한 [NSUserActivity Class Reference](https://developer.apple.com/library/prerelease/ios/documentation/Foundation/Reference/NSUserActivity_Class/) 뿐만 아니라 [CoreSpotlight에 대한 문서](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW3)를 읽는 것도 흥미로울 수 있다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/01-Search-APIs)에 있으니 잊지 말기 바란다.

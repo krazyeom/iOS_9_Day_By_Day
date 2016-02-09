@@ -36,7 +36,7 @@ iOS 9 이전에는 중력(gravity) behaviour만이 field behaviour 타입으로 
 
 이 새로운 두 기능으로 예제를 만들어보자. 타원형과 정사각형의 한 쌍의 뷰에 충돌 로직과 noise UIFieldBehavior를 추가해 보겠다.
 
-![result](./images/result.png)
+![What we are going to build.](images/result.png)
 
 UIKit Dynamics를 사용하기 위해서는 우선 UIDynamicAnimator를 설정해야 한다. 클래스에서 `viewDidLoad` 메소드에서 설정 후 계속 참조하여 쓰자.
 
@@ -114,7 +114,7 @@ portrait orientation일 때만 작동한다는 것을 기억하자. 앱에서 �
 
 지금 앱을 실행시킨다면, 당신은 아래와 같은 화면을 보게 될 것이다.
 
-![visualisation](./images/visualisation.jpg)
+![The view once the behaviours are in place](images/visualisation.jpg)
 
 사각형들이 돌아다니겠지만, 실제로 뭐가 일어나고 있는지는 볼수 없을것이다. 애플은 WWDC session 229에서 animator에 적용된 효과들을 시각적으로 디버깅 할 수있는 방법을 발표했다. swift로 프로젝트를 작성중이라면 bridging header만 추가하고 아래 코드를 추가하면 된다.
 
@@ -140,13 +140,13 @@ animator.debugEnabled = true // Private API. bridging header 참고.
 
 이제 앱을 실행시켜보자. UIFieldBehavior에의해 적용된 힘들을 볼 수 있게 되었다.
 
-![debugMode](./images/debugMode.jpg)
+![The view with debug mode turned on.](images/debugMode.jpg)
 
 타원과 사격형 주변과 뷰의 충돌 경계 주변의 경계 박스를 볼 수 있다. API에서 제공하는 하지않지만 lldb에서 사용가능한 프로퍼티가 두 개 있다. `debugInterval`과 `debugAnimationSpeed`로, UIKit Dynamics 애니메이션을 디버깅 할 때 추가적인 도움을 줄 수 있다.
 
 뷰들에 적용되는 힘과 장(field)을 볼수게 되었다. 장(field)의 프로퍼티들을 변경하고 싶다면, 일반적으로 오브젝트에 숫자를 설정하고 변경된 사항들을 적용하기 위해 다시 실행해야만 했다. 이런 종류의 일들은 실시간으로 조절할 수있는 몇 가지 콘트롤들을 추가함으로써 종종 훨씬 쉽게 할 수 있다. 인터페이스 빌더를 열어서 `UISlide` 콘트롤 3개를 추가하자. 첫 번째는 세기를, 두 번째는 부드러움, 마지막은 속도를 조절할 것이다. 세기 슬라이더는 0 - 25, 나머지 것들은 0 - 1로 스케일을 설정한다.
 
-![interfaceBuilder](./images/interfaceBuilder.png)
+![Setting up the controls in Interface Builder](images/interfaceBuilder.png)
 
 인터페이스 빌더에서 추가한 후에 `ViewController` 클래스에 value changed action을 드레그하여 각각 프로퍼티들이 적절하게 업데이트되도록 하자.
 
@@ -165,10 +165,10 @@ animator.debugEnabled = true // Private API. bridging header 참고.
 ```
 이제 앱을 실행하면, 세 가지 프로퍼티을 조절할 수 있다. 그리고 다른 조합들이 어떤 효과를 내는지도 볼 수 있다.
 
-![result](./images/result.png)
+![The final result.](images/result.png)
 
 UIKit Dynamics의 새로운 UIFieldBehavior와 non-rectangular collision bounds API들을 어떻게 사용하고, 디버깅하는지에 대해 좋은 개략적인 설명이 되기를 희망한다. 시뮬레이터에서는 모션센서의 효과를 완전히 체험할 수 없기에 실제 기기에서 실행해보기를 추천한다.
 
-## 추가적인 읽을거리
+## 더 읽을거리
 
 새로운 UIKit Dynamics의 기능들에 대한 추가적은 정보들은 WWDC session 229 [What's New in UIKit Dynamics and Visual Effects](https://developer.apple.com/videos/wwdc/2015/?id=229)의 전반부를 보기를 추천한다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/09-UIKit-Dynamics)에 있으니 잊지 말기 바란다.

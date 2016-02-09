@@ -128,5 +128,7 @@ items에 `UICollisionBehavior`를 설정해 겹치는것을 방지하며 물리�
 ![image](./images/page70-1.png)
 
 UIKit Dynamics에 UIFieldBehavior 및 non-rectangular collision bound API에 대해 사용하고 디버깅 하는것에 대해 좋은 참고가 됐길 바란다. 나는 실제 디바이스에서 앱을 실행해보는 것을 추천한다, 시뮬레이터로는 모션센서에 대한 모든 효과를 볼 수 없다!
-##Further Reading
+
+## 더 읽을거리
+
 UIKit Dynamics 에 대한 추가적인 정보를 더 얻고 싶다면 WWDC 세션 229에 [What's New in UIKit Dynamics and Visual Effects](https://developer.apple.com/videos/play/wwdc2015-229/) 를 참고하기 바란다. 프로젝트는 [Github](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/09-UIKit-Dynamics) 에 올라와있으니 잊지말고 테스트 해보길 바란다.

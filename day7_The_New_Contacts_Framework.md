@@ -10,7 +10,7 @@ WWDC 세션 진행 중에 iOS 9에서는 이것이 폐지된다고 발표했을�
 
 우리는 지금 당신의 연락처 목록이 표시되며, 그 내용을 표시할 수 있는 간단한 응용 프로그램을 만들고자 한다.
 
-![contactsResult](./images/contactsResult.png)
+![The master detail app we are going to build.](images/contactsResult.png)
 
 당신이 보는 바와 같이, 이것은 iPhone에서도 잘 동작하는 마스터 디테일 뷰 컨트롤러 응용 프로그램이다. 왼쪽에는 장치의 연락처 목록이 나타나며, 연락처들의 이미지, 이름, 전화번호가 디테일 뷰 컨트롤러에 표시된다.
 
@@ -148,7 +148,7 @@ if let phoneNumberLabel = self.contactPhoneNumberLabel {
 
 이것이 마지막 결과 화면이다. 우리의 애플리케이션은 장치의 연락처 리스트를 보여준다. 그리고 데이터를 추출하고 각각에 대한 자세한 내용을 확인할 수 있다.
 
-![contactDetail](./images/contactDetail.png)
+![Contact Detail UI displayed on an iPhone 5s.](images/contactDetail.png)
 
 ### ContactUI 프레임워크를 사용하여 연락처 정보 선택하기
 
@@ -179,11 +179,11 @@ func contactPicker(picker: CNContactPickerViewController, didSelectContactProper
 
 contactPicker delegate 함수의 `didSelectContactProperty`에 `CNContactProperty` 객체를 전달한다. 이것은 `CNContact`의 wrapper이고 사용자가 선택한 특정 속성이다. 어떻게 동작하는지 살펴보자.
 
-![contactPicker](./images/contactPicker.png)
+![The contact picker that appears.](images/contactPicker.png)
 
 `MasterViewController`의 우측 상단의 `UIBarButtonItem`을 클릭할 때 화면 위로 나타난다. 이것은 `CNContactPickerViewController`에 필터 설정을 하지 않은 당신이 가진 모든 연락처의 간단한 목록이다.
 
-![contactPropertySelect](./images/contactPropertySelect.png)
+![Selecting a contact property.](images/contactPropertySelect.png)
 
 연락처를 누르게 되면, 해당 연락처의 전화번호 목록이 표시된다. 이전에 `displayedPropertyKeys`에 `CNContactPhoneNumbersKey` 만을 설정했기 때문에 다른 정보는 표시되지 않는다.
 
@@ -193,6 +193,6 @@ contactPicker delegate 함수의 `didSelectContactProperty`에 `CNContactPropert
 
 요약하면, 우리는 연락처를 선택하기 위해 ContactsUI 프레임워크를 사용하는 것이 개발하는 데에 빠르고 쉬운 것을 확인하였다. 만약 연락처 정보를 표시하는 방법에 있어 더 세밀한 제어가 필요하다면, Contact 프레임워크는 연락처 정보를 저장하고 액세스 하는 데에 더 좋은 방법을 제공한다.
 
-## Further Reading
+## 더 읽을거리
 
-새로운 연락처 프레임워크에 대한 더 많은 정보는 WWDC 세션 223, [Introducing the Contacts Framework for iOS and OS X](https://developer.apple.com/videos/wwdc/2015/?id=223)를 보는 것을 추천한다.
+새로운 연락처 프레임워크에 대한 더 많은 정보는 WWDC 세션 223, [Introducing the Contacts Framework for iOS and OS X](https://developer.apple.com/videos/wwdc/2015/?id=223)를 보는 것을 추천한다. 이글에서 설명한 프로젝트들을 실행해보고 싶다면 [GitHub](https://github.com/shinobicontrols/iOS9-day-by-day/tree/master/07-Contacts-Framework)에 있으니 잊지 말기 바란다.

@@ -172,7 +172,8 @@ completion: nil)
 
 ![image](./images/page62-1.png)
 
-##Further Reading
+## 더 읽을거리
+
 애플페이에 관한 정보를 더 알아보려면 WWDC 세션 702, [Apple Pay Within Apps](https://developer.apple.com/videos/play/wwdc2015-702/)를 추천한다. 좀 긴 세션이긴 하지만 애플페이에 흥미가 있다면 볼만한 가치가 있다. 중간에 어떻게 결제 프로세스에 대한 user experience(사용자 경험)을 향상시킬지에 대한 아주 좋은 세션이 있다.
 
 또한 애플 개발자 사이트에 [guide to Apple Pay](https://developer.apple.com/apple-pay/)에 애플페이를 추가하기 전에 숙지해야 할 많은 정보가 올라와 있다.
