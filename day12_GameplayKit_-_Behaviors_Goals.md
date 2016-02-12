@@ -27,7 +27,7 @@ let player:Player = Player()
 var missile:Missile?
 ```
 
-GKEntity는 기능성을 제공하는 컴포넌트를 추가할 수 있는 범용 객체이다. 우리의 경우 플레이어를 나타내는 것과 미사일을 나타내는 다른 하나 두 개의 엔티티를 가지고 있다. 우리는 이것들을 어떻게 설정하는지 조금 더 자세히 살펴볼 것이다.
+GKEntity는 기능성을 제공하는 컴포넌트를 추가할 수 있는 범용 객체이다. 우리의 경우 두 개의 엔티티를 가진다. 한 개는 플레이어를 나타내고, 또 다른 하나는 미사일을 나타낸다. 우리는 이것들이 어떻게 설정되어있는지 더 자세히 살펴볼 것이다.
 
 우리는 이 엔티티들뿐 아니라 컴포넌트 시스템의 배열을 설정해야 한다. 컴포넌트 시스템은 같은 타입으로 호출될 컴포넌트들의 동질(homogeneous)의 컬렉션이다. 우리는 여기서 lazy var 프로퍼티를 사용할 수 있다. 왜냐하면 우리는 처음 컴포넌트 시스템이 사용 될 때 한번 초기화되는 것을 원하기 때문이다. 우리는 타겟팅을 위한 컴포넌트를 가지고 있다. (플레이어 노드를 겨냥할 수 있도록 미사일 노드에 추가된다) 그리고 렌터링을 위한 컴포넌트도 가지고 있다. (그래서 씬의 두 엔티티를 렌더링할 수 있다) 우리가 반환하는 컴포넌트의 순서대로 컴포넌트가 실행될 것이다. 그래서 우리는 타켓팅 컴포넌트 다음 렌더링 컴포넌트를 반환할 것이다. 왜냐하면 우리는 노드의 위치가 타겟팅 컴포넌트에 의해 업데이트된 다음 화면에 그려지기를 원하기 때문이다.
 
@@ -41,7 +41,7 @@ lazy var componentSystems:[GKComponentSystem] = {
 
 그런데 GameKit 컴포넌트는 무엇인가? 우리는 그것이 씬의 엔티티들에 주는 영향에 대해 논의했지만 그것이 실제로 무엇을 하는지 논의하지 않았다. GKComponent는 엔티티 안 객체의 특정 부분에 대한 데이터와 로직을 캡슐화한다. 컴포넌트는 엔티티와 연관되어 있지만, 엔티티들은 여러 컴포넌트가 있을 수 있다. 컴포넌트들은 엔티티에 추가될 수 있는 재활용 가능한 행동의 조각을 제공한다. 컴포넌트는 구성 패턴(composition pattern)을 사용하여 큰 규모의 게임에서 문제가 될 수 있는 거대한 상속 트리(inheritance tree)를 예방하는 데 도움이 된다.
 
-이 씬의 두 엔티티 모두 렌더링 컴포넌트를 갖고, 추가로 미사일 엔티티는 타겟팅 컴포넌트를 가지고 있다.
+이 씬의 두 개의 엔티티 모두 렌더링 컴포넌트를 갖고, 미사일 엔티티는 추가로 타겟팅 컴포넌트를 가지고 있다.
 
 ### 엔티티들 설정하기
 
@@ -49,7 +49,7 @@ lazy var componentSystems:[GKComponentSystem] = {
 
 다음은 플레이어 클래스이다. 이는 오직 하나의 컴포넌트를 가지고 있는 NodeEntity의 간단한 서브 클래스로 또한 `GKAgent2D` `agent` 프로퍼티를 가지고 있다.
 
-`GKAgent2D`는 차례대로 `GKComponent`의 서브클래스인 `GKAgent`의 서브클래스이다. `GKAgent`는 자신의 지역 좌표계(local coordinate system)가 속도(Velocity)에 따라 조정되는 질량을 가진 점이다. `GKAgent2D`는 `GKAgent`의 2차원에 특화된 클래스이다.
+`GKAgent2D`는 차례대로 `GKComponent`의 서브클래스인 `GKAgent`의 서브클래스이다. `GKAgent`는 자신의 지역 좌표계(local coordinate system)가 속도(Velocity)에 따라 조정되는 질량을 가진 점(point mass)이다. `GKAgent2D`는 `GKAgent`의 2차원에 특화된 클래스이다.
 
 ```swift
 class Player: NodeEntity, GKAgentDelegate {
@@ -80,7 +80,7 @@ agent.delegate = self
 }
 ```
 
-또한 만약 에이전트가 업데이트되면 노드 위치(position)가 업데이트되고, 만약 노드 위치를 수동으로 업데이트하는 경우 에이전트의 계산이 수행되기 전에  에이전트의 위치가 업데이트되도록 GKAgentDelegate 함수를 구현해야 한다.
+또한 만약 에이전트가 업데이트되면 노드 위치(position)가 업데이트되고, 또 만약 노드 위치를 수동으로 업데이트하는 경우 에이전트의 계산이 수행되기 전에 에이전트의 위치가 업데이트되도록 GKAgentDelegate 함수를 구현해야 한다.
 
 ```swift
   func agentDidUpdate(agent: GKAgent) {
@@ -99,7 +99,7 @@ agent.delegate = self
 
 #### 미사일(Missile) 엔티티
 
-미사일 엔티티는 PlayerNode와는 약간 다르다. 생성자에서 우리는 미사일이 탐색할 타겟 에이전트를 전달한다.
+미사일 엔티티는 PlayerNode와는 약간 다르다. 생성자에 미사일이 탐색하게될 타겟 에이전트를 전달한다.
 
 ```swift
 class Missile: NodeEntity, GKAgentDelegate {
@@ -119,9 +119,9 @@ class Missile: NodeEntity, GKAgentDelegate {
     }
 ```
 
-당신은 이 클래스에는 바보(dumb) GKAgent2D가 없다는 것을 눈치챘을 것이다. 왜냐하면, 우리는 씬 주위로 엔티티를 움직이기 위해 TargetingComponent를 사용하기 때문이다. 아래에서 TargetingComponent에 대해 다룰 것이다. 지금은 당신이 알아야 할 모든것은 우리가 targetAgent를 생성자에서 타겟팅 컴포넌트로 전달해야 한다는 것이다. 그리고 타겟팅 컴포넌트가 delegate 메서드를 작동(trigger)시킬 것이다.
+당신은 이 클래스에는 바보(dumb) GKAgent2D가 없다는 것을 눈치챘을 것이다. 왜냐하면, 우리는 씬 주위로 엔티티를 움직이기 위해 TargetingComponent를 사용하기 때문이다. 아래에서 TargetingComponent에 대해 다룰 것이다. 지금 당신이 알아야 할 모든것은 우리가 targetAgent를 생성자에서 타겟팅 컴포넌트로 전달해야 한다는 것이다. 그리고 타겟팅 컴포넌트가 delegate 메서드를 작동(trigger)시킬 것이다.
 
-이것을 위해 우리는 다시 `agentDidUpdate`와 `agentWillUpdate` delegate 메소드를 구현해야 한다. 이 메소드들이 플레이어에 있는 것과 어떻게 다른지 주목하라. 이 경우 두 메소드안에서 zRotation을 고려 해야 한다.
+이것을 위해 우리는 다시 `agentDidUpdate`와 `agentWillUpdate` delegate 메소드를 구현해야 한다. 이 메소드들이 플레이어에 있는 것과 어떻게 다른지 주목하라. 이 경우 우리는 두 메소드안에서 zRotation 또한 고려 해야 한다.
 
 ```swift
 
@@ -168,7 +168,7 @@ class TargetingComponent: GKAgent2D {
 
 코드는 너무 간단해서 설명할 것이 많지 않다. 당신은 클래스가 `GKAgent2D`의 서브클래스인 것을 알 수 있고, `toSeekAgent`생성자로 `GKGoal`을 만든다. 이 목표는 다음 `GKBehavior` 객체를 생성하는 데 사용된다. 만약 복수의 목표를 가지고 있다면, 예를 들어 특정 타겟을 탐색하지만 다른 것은 피해야 하는 경우, 생성자에 복수의 목표를 전달할 수 있다. 또한 각 목표마다 특정한 가중치를 지정할 수 있다. 만약 하나의 에이전트를 피하는 것이 다른 것을 탐색하는 것보다 중요하다면 여기서 나타낼 수 있다.
 
-또한 아랫부분에서 `maxSpeed`, `maxAcceleration` 와 `mass`의 값을 설정한다. 이 단위들은 차원은 없지만(dimensionless) 관련되어 있다. 이 값들은 당신의 정밀한 시나리오에 따라 달라진다. 나는 올바른 값을 얻기 위해 시간이 걸렸다. 처음에 나는 아무 일도 일어나지 않는 줄 알았고 어디가 잘못되었는지 찾기 위해 한참을 소비했다. 이 값들이 모두 기본값으로 설정되어 있던 것을 밝혀냈다. 내 미사일 노드는 움직였지만, 정말 정말 느렸다!
+또한 아랫부분에서 `maxSpeed`, `maxAcceleration` 와 `mass`의 값을 설정한다. 이 단위들은 차원은 없지만(dimensionless) 서로 관련되어 있다. 이 값들은 당신의 정밀한 시나리오에 따라 달라진다. 나는 올바른 값을 얻기 위해 시간이 걸렸다. 처음에 나는 아무 일도 일어나지 않는 줄 알았고 어디가 잘못되었는지 찾기 위해 한참을 소비했다. 이 값들이 모두 기본값으로 설정되어 있던 것을 밝혀냈다. 내 미사일 노드는 움직였지만, 정말 정말 느렸다!
 
 ### 미사일 노드
 
@@ -225,7 +225,7 @@ override func didMoveToView(view: SKView) {
     }
 ```
 
-이제 `update:currentTime` 함수에서 우리가 해야 할 전부는 componentSystems 배열의 모든 컴포넌트 시스템을 델타 타임으로 업데이트 하는 것이다. 이것은 행동들이 무효화(invalidate)하고 재계산(recalculate)을 한 다음, 렌더링을 트리거거 한다.
+이제 `update:currentTime` 함수에서 우리가 해야 할 전부는 componentSystems 배열의 모든 컴포넌트 시스템을 델타 타임으로 업데이트 하는 것이다. 이것은 행동들이 무효화(invalidate)하고 재계산(recalculate)을 한 다음, 렌더링을 트리거 한다.
 
 ```swift
 override func update(currentTime: NSTimeInterval) {
@@ -241,7 +241,7 @@ override func update(currentTime: NSTimeInterval) {
 }
 ```
 
-그리고 그게 전부이다! 이제 게임을 실행하면 플레이어를 향해 질주 미사일을 볼 수 있다. 불행하게도 우리는 충돌 감지와 폭발을 추가하지 않았다. 추가 연습 문제로 폭발 컴포넌트를 직접 만들어 보는 것도 좋다!
+그리고 그게 전부이다! 이제 게임을 실행하면 플레이어를 향해 질주 미사일을 볼 수 있다. 불행하게도 우리는 충돌 감지와 폭발을 추가하지 않았지만, 추가 연습 문제로 폭발 컴포넌트를 직접 만들어 보는 것은 어떠한가!
 
 ## 더 읽을거리
 
