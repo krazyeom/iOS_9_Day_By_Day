@@ -1,6 +1,8 @@
 # iOS 9 Day By Day 번역 프로젝트
 
-책 다운로드 링크 [https://www.shinobicontrols.com/ios9](https://www.shinobicontrols.com/ios9)
+원문 다운로드 링크 [https://www.shinobicontrols.com/ios9](https://www.shinobicontrols.com/ios9)
+
+번역본 다운로드 링크 [https://www.dropbox.com/s/tw7753xqhav07t7/iOS-9-Day-By-Day-Kor.pdf](https://www.dropbox.com/s/tw7753xqhav07t7/iOS-9-Day-By-Day-Kor.pdf)
 
 소스 링크 [https://github.com/ShinobiControls/iOS9-day-by-day](https://github.com/ShinobiControls/iOS9-day-by-day)
 
